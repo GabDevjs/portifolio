@@ -10,22 +10,7 @@ export const metadata: Metadata = {
 		template: "%s | Flavio Gabriel ~ Desenvolvedor Freelancer",
 	},
 	description: "Explore meu universo digital, onde cada linha de código conta uma história e cada projeto é uma jornada única. Como um programador freelancer apaixonado pelo espaço, transformo ideias em realidade digital, criando websites e aplicativos que transcendem os limites do ordinário.",
-	openGraph: {
-		title: "Flavio Gabriel | Desenvolvedor Freelancer",
-		description:
-			"Explore meu universo digital, onde cada linha de código conta uma história e cada projeto é uma jornada única. Como um programador freelancer apaixonado pelo espaço, transformo ideias em realidade digital, criando websites e aplicativos que transcendem os limites do ordinário.",
-		url: "https://chronark.com",
-		siteName: "chronark.com",
-		images: [
-			{
-				url: "https://chronark.com/og.png",
-				width: 1920,
-				height: 1080,
-			},
-		],
-		locale: "en-US",
-		type: "website",
-	},
+
 	robots: {
 		index: true,
 		follow: true,
@@ -36,10 +21,6 @@ export const metadata: Metadata = {
 			"max-image-preview": "large",
 			"max-snippet": -1,
 		},
-	},
-	twitter: {
-		title: "Chronark",
-		card: "summary_large_image",
 	},
 	icons: {
 		shortcut: "/logo.png",
@@ -62,12 +43,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+		<html lang="en" className={[inter.variable, calSans.variable].join(" ")} suppressHydrationWarning={true}>
 			<head>
 				<Analytics />
 			</head>
 			<body
-				className={`bg-black bg-gradient-to-tl from-black via-zinc-600/20 bg-fixed to-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+				className={`bg-black bg-gradient-to-tl from-black via-zinc-600/20 overflow-x-hidden bg-fixed to-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
 				{children}
