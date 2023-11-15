@@ -1,7 +1,6 @@
-"use client";
+"use client"
 import Astronauta from "/public/astronauta.png";
 import React from "react";
-import Particles from "./components/particles";
 import { Navigation } from "./components/nav";
 import { Footer } from "./components/footer";
 import { Card } from "./components/card";
@@ -10,32 +9,34 @@ import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-const DynamicPlanet = dynamic(() => import('./components/planet').then((c) => c.Planet), {
-	ssr: true,
-	loading: () => <p>Loading...</p>,
+const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
+	loading: () => <></>
+})
+
+const DynamicParticles = dynamic(() => import("./components/particles"), {
+	loading: () => <></>,
 })
 
 export default function Home() {
-
 	return (
 		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full">
-			<Particles
+			<DynamicParticles
 				className="absolute inset-0 -z-10 animate-fade-in"
-				quantity={100}
+				quantity={50}
 			/>
 			<Navigation />
 			<section className="flex px-3 justify-center items-center h-[90vh] max-w-7xl relative w-full flex-col z-10">
 				<div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<Particles
+				<DynamicParticles
 					className="absolute inset-0 -z-10 animate-fade-in"
-					quantity={100}
+					quantity={50}
 				/>
 
-				<h1 className="z-10 text-3xl text-transparent duration-1000 text-edge-outline animate-fade-in cursor-default font-display sm:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">
+				<h1 className="z-10 text-3xl text-transparent text-edge-outline animate-fade-in cursor-default font-display sm:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">
 					Flavio Gabriel, Desenvolvedor Freelancer
 				</h1>
-				<div className="z-10  animate-title duration-1000 ">
-					<h1 className="text-5xl text-transparent text-edge-outline bg-white cursor-default font-display sm:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-6">
+				<div className="z-10 animate-title">
+					<h1 className="text-5xl text-white cursor-default font-bold leading-tight sm:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center mb-6">
 						Seu Espaço para  Inovação <br /> Digital
 					</h1>
 				</div>
@@ -59,7 +60,7 @@ export default function Home() {
 					<div className="w-full flex justify-center flex-wrap items-center gap-x-4 gap-y-6 pt-20 ">
 						<Card className="sm:max-w-sm">
 							<div className="py-20 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display  text-center text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl  bg-clip-text mb-2 bg-gray-100 ">
+								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
 									Landing Page
 								</h3>
 								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
@@ -69,7 +70,7 @@ export default function Home() {
 						</Card>
 						<Card className="sm:max-w-sm">
 							<div className="py-20 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display text-center text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl  text-ellipsis bg-clip-text bg-gray-100 mb-2 ">
+								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
 									Site Institucional
 								</h3>
 								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
@@ -79,7 +80,7 @@ export default function Home() {
 						</Card>
 						<Card className="sm:max-w-sm">
 							<div className="py-16 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display text-center text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl  text-ellipsis bg-clip-text bg-gray-100 mb-2 ">
+								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
 									Outros Serviços
 								</h3>
 								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
@@ -92,7 +93,7 @@ export default function Home() {
 			</section>
 
 			<section aria-label="sobre" className="flex items-center justify-center w-full">
-				<div className="flex justify-between items-center flex-col-reverse xl:flex-row gap-x-10 py-20 w-full max-w-7xl p-4 ">
+				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl p-4 ">
 					<div className="flex justify-center flex-1 items-center py-10 ">
 						<Image
 							src={Astronauta}
@@ -102,11 +103,11 @@ export default function Home() {
 							height={600}
 						/>
 					</div>
-					<div className="flex justify-center flex-col flex-1 py-10 ">
+					<div className="flex justify-center flex-col flex-1 py-10 max-w-4xl ">
 						<h3 className="text-2xl font-display  text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl  text-ellipsis bg-clip-text mb-2 ">
 							Sobre Mim
 						</h3>
-						<h2 className="text-3xl font-display text-transparent duration-1000 text-edge-outline cursor-default sm:text-4xl md:text-5xl text-ellipsis bg-clip-text mb-2 bg-gray-200 ">
+						<h2 className="text-3xl font-display cursor-default sm:text-4xl md:text-5xl mb-2 text-gray-200 ">
 							Transformando Códigos em Experiências Inovadoras
 						</h2>
 						<p className="text-sm xl:text-base mt-10 text-gray-300/70 ">

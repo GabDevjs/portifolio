@@ -33,7 +33,7 @@ export const Footer = () => {
         Footer
       </h2>
       <div className="mx-auto  py-14 px-4 sm:px-6 lg:py-24 lg:px-8">
-        <div className="flex justify-between items-center flex-wrap w-full gap-10 ">
+        <div className="flex justify-between items-center flex-wrap w-full gap-6 ">
           {navigation.social.map((item, index) => (
             <div key={index}>
               <div className="bg-gray-200/10 p-4 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer">

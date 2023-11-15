@@ -1,3 +1,4 @@
+"use client"
 import { Popover, Transition } from "@headlessui/react";
 
 import {
@@ -34,7 +35,7 @@ const ItemsNavbarOptions = [
 
 export const Navigation: React.FC = () => {
 	return (
-		<header className="bg-zinc-900/500 animate-fade-in border-zinc-800 backdrop-blur  duration-200 border-b z-50 fixed top-0 inset-x-0">
+		<header className="bg-zinc-900 animate-fade-in border-zinc-800 uration-200 border-b z-50 fixed top-0 inset-x-0">
 			<Popover
 				as="nav"
 			>
