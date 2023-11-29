@@ -8,30 +8,23 @@ import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Particles3d } from "./components/particles3d";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
 })
 
-const DynamicParticles = dynamic(() => import("./components/particles"), {
-	loading: () => <></>,
-})
-
 export default function Home() {
 	return (
-		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full">
-			<DynamicParticles
-				className="absolute inset-0 -z-10 animate-fade-in"
-				quantity={50}
-			/>
+		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full"
+		>
+			<div className="fixed inset-0 -z-10 animate-fade-in opacity-50">
+				<Particles3d
+				/>
+			</div>
 			<Navigation />
 			<section className="flex px-3 justify-center items-center h-[90vh] max-w-7xl relative w-full flex-col z-10">
 				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<DynamicParticles
-					className="absolute inset-0 -z-10 animate-fade-in"
-					quantity={50}
-				/>
-
 				<h1 className="z-10 text-3xl text-transparent text-edge-outline animate-fade-in cursor-default font-display sm:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">
 					Flavio Gabriel, Desenvolvedor Freelancer
 				</h1>
@@ -40,7 +33,6 @@ export default function Home() {
 						Seu Espaço para  Inovação <br /> Digital
 					</h1>
 				</div>
-
 				<div className="w-screen h-px animate-glow block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="text-center animate-fade-in max-w-3xl">
 					<h2 className="text-base xl:text-lg text-gray-300/90 mx-6">
@@ -126,8 +118,13 @@ export default function Home() {
 			</section>
 
 			<section aria-label="projetos" className="flex items-center justify-center w-full">
-				<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-5 max-w-7xl">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl p-4 ">
+					<h2 className="text-3xl font-display text-center text-transparent duration-1000 text-edge-outline cursor-default sm:text-4xl md:text-6xl 2xl:whitespace-nowrap text-ellipsis bg-clip-text mb-2 ">
+						Serviços
+					</h2>
+					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-5 max-w-7xl">
 
+					</div>
 				</div>
 			</section>
 

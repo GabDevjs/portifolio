@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { Effects } from './effects';
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { PrimaryScene } from './PrimaryScene';
 
 const PlanetBody = () => (
@@ -18,7 +18,7 @@ const PlanetBody = () => (
 
 export function Planet() {
   const [showComponente, setShowComponents] = useState(false)
-  // show component after 1s and if the user is not on mobile
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth > 1280) {
       setTimeout(() => {
@@ -27,9 +27,5 @@ export function Planet() {
     }
   }, [])
 
-  return (
-    <>
-      {showComponente && <PlanetBody />}
-    </>
-  );
+  return showComponente && <PlanetBody />
 }
