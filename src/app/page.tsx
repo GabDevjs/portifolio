@@ -26,7 +26,7 @@ export default function Home() {
 			/>
 			<Navigation />
 			<section className="flex px-3 justify-center items-center h-[90vh] max-w-7xl relative w-full flex-col z-10">
-				<div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<DynamicParticles
 					className="absolute inset-0 -z-10 animate-fade-in"
 					quantity={50}
@@ -41,7 +41,7 @@ export default function Home() {
 					</h1>
 				</div>
 
-				<div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+				<div className="w-screen h-px animate-glow block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="text-center animate-fade-in max-w-3xl">
 					<h2 className="text-base xl:text-lg text-gray-300/90 mx-6">
 						Desnvolvedor Full Stack, com foco em desenvolvimento de aplicações web.
@@ -49,7 +49,7 @@ export default function Home() {
 				</div>
 			</section>
 			<DynamicPlanet />
-			<div className="w-full h-[50vh]  md:h-[90vh] ">
+			<div className="w-full hidden xl:block h-[50vh]  md:h-[90vh] ">
 			</div>
 
 			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center ">
