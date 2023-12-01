@@ -12,7 +12,7 @@ interface IParticles3dRef {
 }
 
 export function Particles3d() {
-  const [sphere] = useState(() => random.inSphere(new Float32Array(150), { radius: 1.5, center: [0, 0, 0] }))
+  const [sphere] = useState(() => random.inSphere(new Float32Array(500), { radius: 1.5, center: [0, 0, 0] }))
   return (
     <Canvas camera={{ position: [0, 0, 1] }}>
       <Stars sphere={sphere as Float32Array} />

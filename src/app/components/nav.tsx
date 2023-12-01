@@ -82,7 +82,7 @@ export const Navigation: React.FC = () => {
 							leaveFrom="transform scale-100 opacity-100"
 							leaveTo="transform scale-95 opacity-0"
 						>
-							<Popover.Panel className="md:hidden absolute right-5 vidro bg-gray-300/10 border border-gray-100/20 px-5  rounded-xl   md:rounded-full mt-2">
+							<Popover.Panel className="md:hidden absolute right-5 backdrop-blur-sm bg-neutral-800/90 border border-gray-100/20 px-5 rounded-xl md:rounded-full mt-2 py-2">
 								<div className="border-b border-black border-opacity-5 space-y-4 ">
 									{ItemsNavbarOptions.map((item: any, index: any) => {
 										return (
@@ -93,7 +93,7 @@ export const Navigation: React.FC = () => {
 												<Popover.Button>
 													<Link
 														href={item.href}
-														className="text-base xl:text-base  text-stone-800 dark:text-stone-200 font-medium hover:scale-110 transition-all flex justify-between items-center cursor-pointer"
+														className="text-lg xl:text-base  text-stone-800 dark:text-stone-200 font-medium hover:scale-110 transition-all flex justify-between items-center cursor-pointer"
 														onClick={() => {
 															open = !open;
 														}}
