@@ -18,10 +18,10 @@ export const Earth = () => {
 
   earthDayTexture.colorSpace = nightTexture.colorSpace = cloudTexture.colorSpace = SRGBColorSpace;
 
-  const initialRotation = new Vector3(0.9743700647852352, 0.22495105434386498, 0)
+  const initialRotation = new Vector3(0, 1, 1)
 
   return (
-    <Sphere args={[2.3, 81, 81]}  >
+    <Sphere args={[2.3, 61, 61]}  >
       <shaderMaterial
         vertexShader={earthVertexShader}
         fragmentShader={earthFragmentShader}
@@ -29,11 +29,10 @@ export const Earth = () => {
           dayMap: { value: earthDayTexture },
           nightMap: { value: nightTexture },
           cloudMap: { value: cloudTexture },
-          uTime: { value: 5 },
           lightDirection: { value: initialRotation.clone() },
         }}
       />
-      <Atmosphere lightDirection={initialRotation} verteces={81} />
+      <Atmosphere lightDirection={initialRotation} verteces={61} />
     </Sphere>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import { NavItems } from "./navItems";
 
@@ -18,30 +18,44 @@ const ItemsNavbarOptions = [
 	{
 		name: "Sobre",
 		icon: BsInfoCircleFill,
-		href: "/sobre",
+		href: "#sobre",
 	},
 	{
 		name: "Projetos",
 		icon: BsFillBasket3Fill,
-		href: "/projetos",
+		href: "#projetos",
 	},
 	{
 		name: "Contato",
 		icon: BsFillTelephoneFill,
-		href: "/contato",
+		href: "#contato",
 	},
 ];
 
-
 export const Navigation: React.FC = () => {
+	const [navPosition, setNavPosition] = useState(false);
+
+	const listenScrollEvent = () => {
+		window.scrollY > 50
+			? setNavPosition(true)
+			: setNavPosition(false);
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", listenScrollEvent);
+		return () => {
+			window.removeEventListener("scroll", listenScrollEvent);
+		};
+	}, []);
+
 	return (
-		<header className="bg-zinc-900 animate-fade-in border-zinc-800 uration-200 border-b z-50 fixed top-0 inset-x-0">
+		<header className={`border-b  border-transparent ${navPosition && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0`}>
 			<Popover
 				as="nav"
 			>
 				{({ open }) => (
 					<>
-						<div className="max-w-7xl flex items-center justify-between p-4 mx-auto">
+						<div className="max-w-6xl flex items-center justify-between py-2.5 px-4 mx-auto">
 							<Logo />
 							<div className="hidden md:inline-flex justify-between gap-8  items-center">
 								<NavItems items={ItemsNavbarOptions} />

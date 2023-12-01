@@ -18,7 +18,7 @@ export default function NotFound() {
 					Not Found :(
 				</h1>
 
-				<Link href="/" className="text-white cursor-pointer font-bold text-xl rounded-md px-4 py-2 transition duration-300 ease-in-out hover:bg-white hover:text-black">
+				<Link href="/" className="text-white cursor-pointer font-bold text-xl rounded-md px-4 py-2 transition duration-300 ease-in-out hover:bg-white hover:text-black underline underline-offset-3">
 					Go Home
 				</Link>
 			</div>
