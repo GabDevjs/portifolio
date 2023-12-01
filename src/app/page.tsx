@@ -28,7 +28,7 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full"
+		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden"
 		>
 			<div className="absolute h-screen inset-0 -z-10 animate-fade-in opacity-50">
 				{isMobile ? (
@@ -38,17 +38,19 @@ export default function Home() {
 				)}
 			</div>
 			<Navigation />
-			<section className="flex px-3 justify-center items-center h-[85vh] max-w-7xl relative w-full flex-col z-10">
-				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<h1 className="z-10 text-3xl text-transparent text-edge-outline animate-fade-in cursor-default font-display sm:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">
+			<section className="flex md:px-4 justify-center items-center h-[85vh] max-w-7xl relative w-full flex-col z-10">
+				<h1 className="z-10 text-2xl text-transparent text-edge-outline animate-fade-in cursor-default font-display sm:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">
 					Flavio Gabriel, Desenvolvedor Freelancer
 				</h1>
+
+				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="z-10 animate-title">
-					<h1 className="text-5xl text-white cursor-default font-bold leading-tight sm:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center mb-6">
+					<h1 className="text-4xl text-white cursor-default font-bold leading-tight sm:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center mb-6">
 						Seu Espaço para  Inovação <br /> Digital
 					</h1>
 				</div>
 				<div className="w-screen h-px animate-glow block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+
 				<div className="text-center animate-fade-in max-w-3xl">
 					<h2 className="text-base xl:text-lg text-gray-300/90 mx-6">
 						Desnvolvedor Full Stack, com foco em desenvolvimento de aplicações web.
@@ -56,11 +58,11 @@ export default function Home() {
 				</div>
 			</section>
 			<DynamicPlanet />
-			<div className="w-full hidden xl:block h-[50vh]  md:h-[85vh] ">
+			<div className="w-full hidden xl:block h-[85vh] ">
 			</div>
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
-				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl p-4 ">
+				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
 					<div className="flex justify-center flex-1 items-center py-10 ">
 						<Image
 							src={Astronauta}
@@ -101,7 +103,8 @@ export default function Home() {
 			</section >
 
 			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-10 xl:mb-20">
-				<div className="flex justify-between items-center flex-col w-full max-w-7xl p-4 ">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl md
+				:p-4 ">
 					<h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl md:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Serviços
 					</h2>
@@ -141,11 +144,11 @@ export default function Home() {
 			</section>
 
 			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center xl:mt-20 xl:mb-12">
-				<div className="flex justify-between items-center flex-col w-full max-w-7xl p-4 ">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl md:p-4 ">
 					<h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl md:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Projetos
 					</h2>
-					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-5 max-w-7xl">
+					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 md:px-5 max-w-7xl">
 						{Projects.map((item: IProject, index) => (
 							<Card className="flex flex-col gap-1 p-3" key={index}>
 								<div className="w-full rounded-xl overflow-hidden relative h-[50vh]">
@@ -193,9 +196,9 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full px-6">
+			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full md:px-6">
 				<Card className="max-w-7xl w-full rounded-3xl ">
-					<form className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-5">
+					<form className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
 						<div className="py-3 md:col-span-2 px-4 md:px-[5vw]">
 							<h2 className="text-5xl md:text-6xl xl:text-7xl font-semibold text-gray-100">
 								Tem uma ideia incrível? <br /> Vamos dar vida a isso.

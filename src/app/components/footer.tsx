@@ -32,7 +32,7 @@ export const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto  py-14 px-4 sm:px-6 lg:py-24 lg:px-8">
+      <div className="mx-auto py-14 px-6 lg:py-24 lg:px-8">
         <div className="flex justify-between items-center flex-wrap w-full gap-6 ">
           {navigation.social.map((item, index) => (
             <div key={index}>
