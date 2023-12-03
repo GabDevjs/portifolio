@@ -42,7 +42,7 @@ export default function RootLayout({
 				<Analytics />
 			</head>
 			<body
-				className={`bg-black bg-gradient-to-tl from-black via-zinc-600/20 overflow-x-hidden bg-fixed to-black ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+				className={`bg-gray-950 bg-gradient-to-tl from-neutral-950 via-neutral-600/30 overflow-x-hidden bg-fixed to-neutral-950 ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
 				{children}

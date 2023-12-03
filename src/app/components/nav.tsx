@@ -12,6 +12,8 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import { NavItems } from "./navItems";
+import { Card } from "./card";
+import { navigation } from "./footer";
 
 
 const ItemsNavbarOptions = [
@@ -34,6 +36,7 @@ const ItemsNavbarOptions = [
 
 export const Navigation: React.FC = () => {
 	const [navPosition, setNavPosition] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	const listenScrollEvent = () => {
 		window.scrollY > 50
@@ -49,67 +52,57 @@ export const Navigation: React.FC = () => {
 	}, []);
 
 	return (
-		<header className={`border-b  border-transparent ${navPosition && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0`}>
-			<Popover
-				as="nav"
-			>
-				{({ open }) => (
-					<>
-						<div className="max-w-6xl flex items-center justify-between py-2.5 px-4 mx-auto">
-							<Logo />
-							<div className="hidden md:inline-flex justify-between gap-8  items-center">
-								<NavItems items={ItemsNavbarOptions} />
-							</div>
+		<>
+			<header className={`border-b  border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0`}>
+				<div className="max-w-6xl flex items-center justify-between pb-2.5 pt-2.5 px-4 mx-auto">
+					<Logo />
+					<div className="hidden md:inline-flex justify-between gap-8  items-center">
+						<NavItems items={ItemsNavbarOptions} />
+					</div>
 
-							{/* Mobile menu button */}
-							<div className=" flex md:hidden">
-								<Popover.Button className="flex text-gray-300/90 items-center justify-between w-full text-lg p-1.5 border border-gray-200 border-opacity-10 bg-gray-100 bg-opacity-10 rounded-full hover:scale-110 transition-all duration-200 focus:outline-none">
-									<span className="sr-only">Open main menu</span>
-									{open ? (
-										<BsXLg className="block h-6 w-6" />
-									) : (
-										<HiMenuAlt3 className="block h-6 w-6" aria-hidden="true" />
-									)}
-								</Popover.Button>
-							</div>
+					<div className="flex md:hidden">
+						<button onClick={() => {
+							setOpen(!open);
+						}} className="flex text-gray-300/90 items-center justify-between w-full text-lg p-1.5 border border-gray-200 border-opacity-10 bg-gray-100 bg-opacity-10 rounded-full hover:scale-110 transition-all duration-200 focus:outline-none">
+							<span className="sr-only">Open main menu</span>
+							{open ? (
+								<BsXLg className="block h-6 w-6" />
+							) : (
+								<HiMenuAlt3 className="block h-6 w-6" aria-hidden="true" />
+							)}
+						</button>
+					</div>
+				</div>
+			</header>
 
+			{open && (
+				<div className="fixed inset-0 z-20 bg-neutral-900 animate-fade-card-in pt-16 p-4 overflow-hidden">
+					<Card className="flex flex-col items-center h-full px-4">
+						<div className="flex flex-col items-center justify-center h-[70%] w-full" onClick={() => {
+							setOpen(!open);
+						}}>
+							<NavItems items={ItemsNavbarOptions} isMobile />
 						</div>
-						<Transition
-							enter="transition duration-100 ease-out"
-							enterFrom="transform scale-95 opacity-0"
-							enterTo="transform scale-100 opacity-100"
-							leave="transition duration-100 ease-out"
-							leaveFrom="transform scale-100 opacity-100"
-							leaveTo="transform scale-95 opacity-0"
-						>
-							<Popover.Panel className="md:hidden absolute right-5 backdrop-blur-sm bg-neutral-800/90 border border-gray-100/20 px-5 rounded-xl md:rounded-full mt-2 py-2">
-								<div className="border-b border-black border-opacity-5 space-y-4 ">
-									{ItemsNavbarOptions.map((item: any, index: any) => {
-										return (
-											<span
-												key={index}
-												className="flex justify-center items-center h-full w-full py-2 px-3 "
-											>
-												<Popover.Button>
-													<Link
-														href={item.href}
-														className="text-lg xl:text-base  text-stone-800 dark:text-stone-200 font-medium hover:scale-110 transition-all flex justify-between items-center cursor-pointer"
-														onClick={() => {
-															open = !open;
-														}}
-													>
-														{item.name}
-													</Link>
-												</Popover.Button>
-											</span>
-										);
-									})}
+
+						<div className="flex justify-center h-[29%] items-center gap-6 flex-wrap py-4">
+							{navigation.social.map((item, index) => (
+								<div key={index}>
+									<div className="bg-gray-200/10 p-4 hover:scale-125 rounded-full group  flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer">
+										<Link href={item.href}
+											className="text-gray-200
+                    group-hover:text-primary-orange"
+											target="_blank"
+										>
+											<span className="sr-only">{item.name}</span>
+											<item.icon className="h-7 w-7" aria-hidden="true" />
+										</Link>
+									</div>
 								</div>
-							</Popover.Panel>
-						</Transition>
-					</>
-				)}
-			</Popover>
-		</header>
+							))}
+						</div>
+					</Card>
+				</div>
+			)}
+		</>
 	);
 };

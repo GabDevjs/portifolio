@@ -21,7 +21,7 @@ export const Earth = () => {
   const initialRotation = new Vector3(0, 1, 1)
 
   return (
-    <Sphere args={[2.3, 61, 61]}  >
+    <Sphere args={[2.3, 41, 41]}  >
       <shaderMaterial
         vertexShader={earthVertexShader}
         fragmentShader={earthFragmentShader}
@@ -32,7 +32,7 @@ export const Earth = () => {
           lightDirection: { value: initialRotation.clone() },
         }}
       />
-      <Atmosphere lightDirection={initialRotation} verteces={61} />
+      <Atmosphere lightDirection={initialRotation} verteces={41} />
     </Sphere>
   );
 };

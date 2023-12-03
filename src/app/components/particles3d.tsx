@@ -1,8 +1,9 @@
 "use client";
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Points, PointMaterial } from '@react-three/drei'
 import * as random from "maath/random";
+import { TypedArray } from 'three';
 
 interface IParticles3dRef {
   rotation: {
@@ -12,9 +13,14 @@ interface IParticles3dRef {
 }
 
 export function Particles3d() {
-  const [sphere] = useState(() => random.inSphere(new Float32Array(500), { radius: 1.5, center: [0, 0, 0] }))
+  const [sphere, setSphere] = useState<Float32Array | TypedArray>(() => new Float32Array(90) || 0)
+
+  useEffect(() => {
+    setSphere(() => random.inSphere(new Float32Array(90) || 0))
+  }, [])
+
   return (
-    <Canvas camera={{ position: [0, 0, 1] }}>
+    <Canvas camera={{ position: [0, 0, 1], }} className='w-full h-full'>
       <Stars sphere={sphere as Float32Array} />
     </Canvas>
   )
@@ -29,18 +35,21 @@ function Stars({ sphere }: StarsProps) {
 
   useFrame((_state, delta) => {
     if (ref.current !== null && ref.current?.rotation !== undefined) {
-      ref.current.rotation.x -= delta / 80
-      ref.current.rotation.y += delta / 80
+      ref.current.rotation.x -= delta / 20
+      ref.current.rotation.y += delta / 20
     }
-    return 0
   })
+
+  if (typeof sphere !== "object") {
+    return null
+  }
 
   return (
     // @ts-ignore
     <mesh ref={ref}>
-      <group rotation={[0, 0, Math.PI / 1]}>
-        <Points positions={sphere} stride={3} frustumCulled={true}>
-          <PointMaterial transparent color="#a0c4ff" size={0.005} sizeAttenuation={true} depthWrite={false} />
+      <group rotation={[0, 0, Math.PI / 1]} position={0}>
+        <Points positions={sphere || 0} stride={3} frustumCulled={true}>
+          <PointMaterial transparent radius={2} color="#a0c4ff" size={0.005} />
         </Points>
       </group>
     </mesh>

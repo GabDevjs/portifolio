@@ -39,10 +39,12 @@ module.exports = {
       animation: {
         "fade-in": "fade-in 3s ease-in-out forwards",
         title: "title 3s ease-out forwards",
-        "fade-left": "fade-left 3s ease-in-out forwards",
+        "fade-left": "fade-left 3s ease-in forwards",
         "fade-right": "fade-right 3s ease-in-out forwards",
         "fade-up": "fade-up 3s ease-in-out forwards",
         "fade-down": "fade-down 5s ease-in-out forwards",
+        "fade-card-left": "fade-card-left 0.5s ease-in-out forwards",
+        "fade-card-in": "fade-in 0.5s ease-in-out forwards",
       },
       keyframes: {
         "fade-in": {
@@ -61,13 +63,22 @@ module.exports = {
             transform: "translateX(100%)",
             opacity: "0%",
           },
-
           "30%": {
             transform: "translateX(0%)",
             opacity: "100%",
           },
           "100%": {
             opacity: "0%",
+          },
+        },
+        "fade-card-left": {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0%",
+          },
+          "100%": {
+            transform: "translateX(0%)",
+            opacity: "100%",
           },
         },
         "fade-right": {

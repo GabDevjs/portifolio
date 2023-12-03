@@ -5,13 +5,14 @@ import { Navigation } from "./components/nav";
 import { Footer, navigation } from "./components/footer";
 import { Card } from "./components/card";
 import Image from "next/image";
-import { BsArrowRight } from "react-icons/bs";
+import { BsArrowDown, BsArrowRight, BsRocketTakeoffFill, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Particles3d } from "./components/particles3d";
 import Particles from "./components/particles";
 import { Projects } from "@/data/projects";
 import { IProject } from "@/data/projects.d";
+import { ProjectCard } from "./components/projectCard";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
@@ -19,7 +20,7 @@ const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => 
 
 export default function Home() {
 	const [isMobile, setIsMobile] = useState(false);
-
+	const [viewMore, setViewMore] = useState(false);
 
 	useEffect(() => {
 		if (window.innerWidth < 1280) {
@@ -30,33 +31,54 @@ export default function Home() {
 	return (
 		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
 		>
-			<div className="absolute h-screen inset-0 -z-10 animate-fade-in opacity-50">
+			<div className="absolute h-screen inset-0 -z-10 animate-fade-in ">
 				{!isMobile ? (
-					<Particles quantity={90} className="w-screen h-screen" />
+					<>
+						<Particles quantity={40} className="w-screen h-screen" />
+						<Particles quantity={40} className="w-screen h-screen" />
+					</>
 				) : (
 					<Particles3d />
 				)}
 			</div>
 			<Navigation />
-			<section className="flex  md:px-4 justify-center items-center h-[85vh] max-w-7xl relative w-full flex-col z-10">
-				<h1 className="z-10  font-bold text-2xl text-transparent text-edge-outline animate-fade-in cursor-default font-display md:text-4xl 2xl:text-6xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text">
-					Flavio Gabriel, Desenvolvedor Freelancer
+			<section className="flex md:px-4 justify-center items-center h-screen  max-w-7xl relative w-full flex-col z-10">
+				<h1 className="z-10 font-bold text-xl text-transparent text-edge-outline animate-fade-in cursor-default font-display md:text-3xl 2xl:text-4xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text">
+					Flavio Gabriel,<br className="inline md:hidden" /> Programador Freelancer
 				</h1>
 				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<div className="z-10 animate-title">
-					<h1 className="text-[2.40rem] text-white cursor-default font-bold leading-tight sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-4">
-						Seu Espaço para  Inovação <br className="hidden md:inline" /> Digital
+				<div className="z-10 animate-title w-full">
+					<h1 className="text-[2.5rem] text-white cursor-default font-bold leading-tight sm:text-6xl xl:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
+						Seu Espaço para  Inovação <br className="hidden 2xl:block" /> Digital
 					</h1>
 				</div>
 				<div className="w-screen h-px animate-glow block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<div className="text-center animate-fade-in max-w-3xl">
-					<h2 className="text-base xl:text-lg text-gray-300/90 md:mx-6">
-						Desnvolvedor Full Stack, com foco em desenvolvimento de aplicações web.
+				<div className="text-center animate-fade-in max-w-4xl">
+					<h2 className="text-sm md:text-base  text-gray-300/90 md:mx-6">
+						Bem-vindo ao seu universo digital, onde o código se entrelaça com as estrelas e a criatividade se funde com o espaço infinito da inovação. Paixão por programação, pronta para levar seus projetos além das estrelas!
 					</h2>
+				</div>
+				<div className="flex justify-center items-center flex-wrap pt-6	md:mb-10 gap-2 gap-y-5 md:gap-6 w-full text-sm animate-fade-in">
+					<Link href="/orcamento"
+						className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+					>
+						<BsRocketTakeoffFill className="h-5 w-5" />
+						Solicite um orçamento
+					</Link>
+
+					<span className="text-gray-300/90 text-sm ">
+						ou
+					</span>
+					<Link href="#sobre"
+						className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-green-500 before:to-green-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+					>
+						<BsWhatsapp className="h-5 w-5" />
+						Entre em contato
+					</Link>
 				</div>
 			</section>
 			<DynamicPlanet />
-			<div className="w-full hidden xl:block h-[85vh] ">
+			<div className="w-full hidden xl:block h-[70vh] ">
 			</div>
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
@@ -101,8 +123,7 @@ export default function Home() {
 			</section >
 
 			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-10 mb-20">
-				<div className="flex justify-between items-center flex-col w-full max-w-7xl md
-				:p-4 ">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Serviços
 					</h2>
@@ -142,64 +163,35 @@ export default function Home() {
 			</section>
 
 			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center xl:mt-20 xl:mb-12">
-				<div className="flex justify-between items-center flex-col w-full max-w-7xl md:p-4 ">
+				<div className="flex justify-between items-center flex-col w-full max-w-6xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Projetos
 					</h2>
-					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 md:px-5 max-w-7xl">
-						{Projects.map((item: IProject, index) => (
-							<Card className="flex flex-col gap-1 p-2 pt-3" key={index}>
-								<Link
-									href={item.link}
-									target="_blank"
-
-									className="w-full rounded-lg overflow-hidden relative h-[40vh] md:h-[50vh]">
-									{item.mainImage ? (
-										<Image
-											src={item.mainImage}
-											alt={item.title}
-											fill
-											className="object-cover object-center animate-fade-in"
-										/>
-									) : (
-										<div className="w-full h-[200px] rounded-xl bg-gray-200/10 animate-fade-in" />
-									)}
-								</Link>
-								<div className="flex  pt-4 md:pt-0 flex-wrap justify-between items-center gap-4">
-									<div className="flex-1">
-										<div className="flex items-center  gap-2">
-											<span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-100 bg-gray-200/10 rounded-full">
-												{item.year.toString()}
-											</span>
-											{item.tags.length > 0 && item.tags.map((tag, index) => (
-												<span key={index} className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-100 bg-gray-200/10 rounded-full">
-													{tag}
-												</span>
-											))}
-										</div>
-										<h3 className="text-xl font-display cursor-default sm:text-2xl mb-2 text-gray-100 ">
-											{item.title}
-										</h3>
-										<p className="text-sm 2xl:text-base text-gray-300/70 ">
-											{item.description}
-										</p>
-									</div>
-									<div className="flex justify-center items-center flex-col gap-4">
-										<Link href={item.link}
-											className="bg-gray-200/10 p-2.5 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer text-gray-100"
-											target="_blank"
-										>
-											<BsArrowRight className="h-6 w-6" aria-hidden="true" />
-										</Link>
-									</div>
-								</div>
-							</Card>
-						))}
+					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 pt-10 pb-6">
+						{viewMore ?
+							Projects.map((item: IProject, index) => (
+								<ProjectCard item={item} key={index} />
+							)) :
+							Projects.slice(0, 4).map((item: IProject, index) => (
+								<ProjectCard item={item} key={index} />
+							))
+						}
 					</div>
+					{Projects.length >= 4 && (
+						<Card className="flex justify-center items-center  w-full max-w-6xl py-1" onClick={() => {
+							setViewMore(!viewMore)
+						}} >
+							<h2 className="text-xl font-display text-center inline-flex gap-2 items-center text-transparent text-edge-outline cursor-default  2xl:whitespace-nowrap xl:text-2xl text-ellipsis bg-clip-text  font-bold ">
+								Ver {viewMore ? "menos" : "mais"}
+								<BsArrowDown className={`inline text-white h-5 w-5 ${viewMore && "rotate-180"} transition-transform duration-300`} />
+							</h2>
+						</Card>
+					)}
 				</div>
 			</section>
-			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full md:px-6">
-				<Card className="max-w-7xl w-full rounded-3xl ">
+
+			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full mt-10">
+				<Card className="max-w-6xl w-full rounded-3xl ">
 					<form className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
 						<div className="py-2 md:py-3 md:col-span-2 px-4 md:px-[5vw]">
 							<h2 className="text-4xl md:text-6xl xl:text-7xl font-semibold text-gray-100">
@@ -262,7 +254,7 @@ export default function Home() {
 						<div className="py-3  md:col-span-2 flex justify-end px-4 md:px-[10vw]">
 							<button
 								type="submit"
-								className="w-32 h-32 inline-flex gap-2 text-xl font-medium justify-center items-center border border-gray-200 rounded-full text-gray-200 focus:outline-none hover:bg-gray-200 hover:text-gray-900 transition-colors duration-500 ease-in-out uppercase">
+								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
 								Enviar
 							</button>
 						</div>

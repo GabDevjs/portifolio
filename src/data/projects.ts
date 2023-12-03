@@ -20,6 +20,12 @@ export const Projects: IProject[] = [
         name: "Github",
         link: "https://github.com/GabDevjs/LandingPage-Pizzaria"
       }
+    ],
+    images: [
+      {
+        src: pizzaria,
+        alt: "Pizzaria"
+      }
     ]
   },
   {
@@ -57,5 +63,5 @@ export const Projects: IProject[] = [
         link: "https://github.com/GabDevjs/LandingPage-TravelWebsite"
       }
     ]
-  },
+  }
 ]

@@ -1,9 +1,5 @@
-
-
 import Link from "next/link";
 import Particles from "./components/particles";
-import { Particles3d } from "./components/particles3d";
-
 
 export default function NotFound() {
 	return (
@@ -18,7 +14,7 @@ export default function NotFound() {
 					Not Found :(
 				</h1>
 
-				<Link href="/" className="text-white cursor-pointer font-bold text-xl rounded-md px-4 py-2 transition duration-300 ease-in-out hover:bg-white hover:text-black underline underline-offset-3">
+				<Link href="/" className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0">
 					Go Home
 				</Link>
 			</div>
