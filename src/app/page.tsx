@@ -5,7 +5,7 @@ import { Navigation } from "./components/nav";
 import { Footer, navigation } from "./components/footer";
 import { Card } from "./components/card";
 import Image from "next/image";
-import { BsArrowDown, BsArrowRight, BsRocketTakeoffFill, BsWhatsapp } from "react-icons/bs";
+import { BsArrowDown, BsRocketTakeoffFill, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Particles3d } from "./components/particles3d";
@@ -13,14 +13,74 @@ import Particles from "./components/particles";
 import { Projects } from "@/data/projects";
 import { IProject } from "@/data/projects.d";
 import { ProjectCard } from "./components/projectCard";
+import { useForm } from "react-hook-form";
+import { createErrorToast } from "../util/ToatsNotification";
+import { sendMailer } from "../services/sendMailer";
+import { useRouter } from "next/router";
+import { PatternFormat } from "react-number-format"
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
 })
 
 export default function Home() {
+	const { register, handleSubmit, setValue, reset } = useForm();
 	const [isMobile, setIsMobile] = useState(false);
 	const [viewMore, setViewMore] = useState(false);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	const [phoneValue, setPhoneValue] = useState("");
+	const router = useRouter();
+
+	const handleSubmitContact = async (data: any) => {
+		setIsLoading(true);
+		data = {
+			body: {
+				name: data.name,
+				email: data.email,
+				phone: data.phone,
+			},
+			config: {
+				completo: false,
+				path: router.asPath,
+			},
+		};
+
+		const res = await sendMailer(data);
+
+
+		if (res.status == 422) {
+			createErrorToast(`${res.data.menssagem}`);
+			return;
+		}
+
+		if (res.status == 200) {
+			setIsLoading(false);
+			reset();
+			setPhoneValue("");
+			setValue("name", "");
+			setValue("email", "");
+			setValue("phone", "");
+			router.push("/obrigado");
+			return;
+		}
+
+		if (res.status == 500) {
+			reset();
+			setPhoneValue("");
+			setValue("name", "");
+			setValue("email", "");
+			setValue("phone", "");
+			createErrorToast(
+				"Erro ao enviar a mensagem, tente novamente mais tarde!"
+			);
+			return;
+		}
+
+		createErrorToast("Erro ao enviar a mensagem, tente novamente mais tarde!");
+		setIsLoading(false);
+	};
 
 	useEffect(() => {
 		if (window.innerWidth < 1280) {
@@ -192,7 +252,8 @@ export default function Home() {
 
 			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full mt-10">
 				<Card className="max-w-6xl w-full rounded-3xl ">
-					<form className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
+					<form onSubmit={handleSubmit(handleSubmitContact)}
+						className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
 						<div className="py-2 md:py-3 md:col-span-2 px-4 md:px-[5vw]">
 							<h2 className="text-4xl md:text-6xl xl:text-7xl font-semibold text-gray-100">
 								Tem uma ideia incrível? <br /> Vamos dar vida a isso.
@@ -205,10 +266,10 @@ export default function Home() {
 							<div className="relative mt-2">
 								<input
 									type="text"
-									name="name"
 									id="name"
 									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									placeholder=""
+									{...register("name")}
 								/>
 								<div
 									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"
@@ -223,10 +284,38 @@ export default function Home() {
 							<div className="relative mt-2">
 								<input
 									type="email"
-									name="email"
 									id="email"
 									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									placeholder=""
+									{...register("email")}
+								/>
+								<div
+									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"
+									aria-hidden="true"
+								/>
+							</div>
+						</div>
+						<div className="py-3 px-2 col-span-2">
+							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 peer-focus:translate-x-0 peer-focus:translate-y-0">
+								Telefone
+							</label>
+							<div className="relative mt-2">
+								<PatternFormat
+									name="phone"
+									placeholder="(00) 00000-0000"
+									type="tel"
+									format="(##) #####-####"
+									value={phoneValue || ""}
+									required
+									className="focus:border-mv-verduncio w-full rounded-3xl border-[1px] px-8 py-2 text-xl text-zinc-800 placeholder:text-zinc-500"
+									onValueChange={({ value }: {
+										value: string
+									}) => {
+										setValue("phone", value);
+									}}
+									onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => {
+										setPhoneValue(e.target.value);
+									}}
 								/>
 								<div
 									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"
@@ -240,10 +329,10 @@ export default function Home() {
 							</label>
 							<div className="relative mt-2">
 								<textarea
-									name="mensagem"
 									id="mensagem"
 									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									placeholder=""
+									{...register("mensagem")}
 								/>
 								<div
 									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"

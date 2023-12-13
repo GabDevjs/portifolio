@@ -1,44 +1,20 @@
-"use client"
-import { useEffect, useState } from 'react';
-import ReactGlobe, { Globe, Marker, Optional } from 'react-globe';
+import { Canvas } from '@react-three/fiber';
+import { Effects } from './effects';
+import { Suspense, useEffect, useState } from 'react';
+import { PrimaryScene } from './PrimaryScene';
 
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-
-const MyGlobe = () => {
-  const markers: Marker[] = [
-    {
-      id: 'marker1',
-      city: 'Singapore',
-      color: 'red',
-      coordinates: [1.3521, 103.8198],
-      value: 50,
-    }
-  ];
-
-  // simple and extensive options to configure globe
-  const options: Optional<any> = {
-    ambientLightColor: 'red',
-    cameraRotateSpeed: 0.5,
-    focusAnimationDuration: 2000,
-    focusEasingFunction: ['Linear', 'None'],
-    pointLightColor: 'gold',
-    scale: 0.9,
-    pointLightIntensity: 1.5,
-    globeGlowColor: 'blue',
-    markerTooltipRenderer: (marker: { city: any; value: any; }) => `${marker.city} (${marker.value})`,
-  };
-
-  const [globe, setGlobe] = useState<Globe>();
-  console.log(globe);
-
-  return (
-    <ReactGlobe
-
-
-    />
-  )
-}
+const PlanetBody = () => (
+  <div className='w-screen h-[60vh] md:h-screen absolute inset-x-0 top-[66vh] 2xl:top-[76vh]  z-10'>
+    <Canvas frameloop="demand" camera={{ fov: 40, position: [0, 0, 7], }} >
+      <Suspense fallback={<></>} >
+        <Effects />
+      </Suspense>
+      <Suspense fallback={<></>} >
+        <PrimaryScene />
+      </Suspense>
+    </Canvas>
+  </div>
+);
 
 export function Planet() {
   const [showComponente, setShowComponents] = useState(false)
@@ -51,7 +27,5 @@ export function Planet() {
     }
   }, [])
 
-  return showComponente && (
-    <MyGlobe />
-  )
+  return showComponente && <PlanetBody />
 }
