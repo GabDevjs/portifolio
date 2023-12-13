@@ -1,5 +1,5 @@
 import "../styles/index.css";
-import { Inter } from "@next/font/google";
+import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
