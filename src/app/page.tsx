@@ -1,5 +1,5 @@
 "use client"
-import Astronauta from "/public/astronauta.png";
+import Astronauta from "/public/menino_lindo.jpeg";
 import React, { useEffect, useState } from "react";
 import { Navigation } from "./components/nav";
 import { Footer, navigation } from "./components/footer";
@@ -16,8 +16,9 @@ import { ProjectCard } from "./components/projectCard";
 import { useForm } from "react-hook-form";
 import { createErrorToast } from "../util/ToatsNotification";
 import { sendMailer } from "../services/sendMailer";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 import { PatternFormat } from "react-number-format"
+import ClipLoader from "react-spinners/ClipLoader";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
@@ -43,7 +44,7 @@ export default function Home() {
 			},
 			config: {
 				completo: false,
-				path: router.asPath,
+				path: usePathname(),
 			},
 		};
 
@@ -144,13 +145,14 @@ export default function Home() {
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
 				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
 					<div className="flex justify-center flex-1 items-center py-10 ">
-						<Image
-							src={Astronauta}
-							alt="Astronauta"
-							className="object-cover animate-fade-in drop-shadow-2xl"
-							width={600}
-							height={600}
-						/>
+						<div className=" h-[70vh] w-full rounded-3xl border-4 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
+							<Image
+								src={Astronauta}
+								alt="Astronauta"
+								className="object-cover animate-fade-in drop-shadow-2xl"
+								fill
+							/>
+						</div>
 					</div>
 					<div className="flex justify-center flex-col flex-1 py-10 max-w-4xl ">
 						<h3 className="text-2xl font-display  text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl xl:text-4xl font-semibold text-ellipsis bg-clip-text mb-2 ">
@@ -302,12 +304,11 @@ export default function Home() {
 							<div className="relative mt-2">
 								<PatternFormat
 									name="phone"
-									placeholder="(00) 00000-0000"
 									type="tel"
 									format="(##) #####-####"
 									value={phoneValue || ""}
 									required
-									className="focus:border-mv-verduncio w-full rounded-3xl border-[1px] px-8 py-2 text-xl text-zinc-800 placeholder:text-zinc-500"
+									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									onValueChange={({ value }: {
 										value: string
 									}) => {
@@ -343,8 +344,17 @@ export default function Home() {
 						<div className="py-3  md:col-span-2 flex justify-end px-4 md:px-[10vw]">
 							<button
 								type="submit"
-								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0">
-								Enviar
+								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0"
+								disabled={isLoading}
+							>
+								{
+									isLoading ?
+										<span>
+											<ClipLoader color="#ffffff" loading={isLoading} size={20} />
+										</span>
+										:
+										<span >Enviar</span>
+								}
 							</button>
 						</div>
 					</form>
