@@ -67,7 +67,6 @@ export default function RootLayout({
 					}`}
 			>
 				{children}
-				<Script src="https://server.fillout.com/embed/v1/" strategy="beforeInteractive" />
 			</body>
 		</html>
 	);

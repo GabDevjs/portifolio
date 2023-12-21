@@ -13,10 +13,6 @@ export const Projects: IProject[] = [
     tags: ["html", "css", "javascript"],
     otherLinks: [
       {
-        name: "Behance",
-        link: "https://www.behance.net/gallery/134377753/Landing-page-Pizzaria",
-      },
-      {
         name: "Github",
         link: "https://github.com/GabDevjs/LandingPage-Pizzaria"
       }
@@ -37,10 +33,6 @@ export const Projects: IProject[] = [
     tags: ["html", "sass", "javascript"],
     otherLinks: [
       {
-        name: "Behance",
-        link: "https://www.behance.net/gallery/134314129/Landing-page-PetShop-WebSite",
-      },
-      {
         name: "Github",
         link: "https://github.com/GabDevjs/Landing-page---PetShop-WebSite"
       }
@@ -54,10 +46,6 @@ export const Projects: IProject[] = [
     year: "2021",
     tags: ["html", "sass", "javascript"],
     otherLinks: [
-      {
-        name: "Behance",
-        link: "https://www.behance.net/gallery/134362077/Landing-Page-TravelWebsite",
-      },
       {
         name: "Github",
         link: "https://github.com/GabDevjs/LandingPage-TravelWebsite"
