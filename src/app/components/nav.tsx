@@ -58,7 +58,7 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 	return (
 		<>
 			<header className={home ? `border-b  border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0` : "z-50 fixed top-0 inset-x-0 border-b  bg-zinc-900  border-zinc-800 transition-colors "}>
-				<div className="max-w-6xl flex items-center justify-between pb-2.5 pt-2.5 px-4 mx-auto">
+				<div className="max-w-7xl flex items-center justify-between pb-2.5 pt-2.5 px-4 mx-auto">
 					<Logo />
 					<div className="hidden md:inline-flex justify-between gap-5 text-sm items-center">
 						<NavItems items={ItemsNavbarOptions} />

@@ -73,15 +73,13 @@ export default function Home() {
 			setIsMobile(true);
 		}
 	}, []);
-
 	return (
 		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
 		>
 			<div className="absolute h-screen inset-0 -z-10 animate-fade-in ">
 				{!isMobile ? (
 					<>
-						<Particles quantity={40} className="w-screen h-screen" />
-						<Particles quantity={40} className="w-screen h-screen" />
+						<Particles quantity={80} className="w-screen h-screen" />
 					</>
 				) : (
 					<Particles3d />
@@ -94,12 +92,12 @@ export default function Home() {
 				</h1>
 				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="z-10 animate-title w-full">
-					<h1 className="text-[2.5rem] text-white cursor-default font-bold leading-tight sm:text-6xl xl:text-6xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
+					<h1 className="text-[2.5rem] text-white cursor-default font-bold leading-10 sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
 						Seu Espaço para  Inovação <br className="hidden 2xl:block" /> Digital
 					</h1>
 				</div>
 				<div className="w-screen h-px animate-glow block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-				<div className="text-center animate-fade-in max-w-4xl">
+				<div className="text-center animate-fade-in max-w-4xl mt-2">
 					<h2 className="text-sm md:text-base  text-gray-300/90 md:mx-6">
 						Bem-vindo ao seu universo digital, onde o código se entrelaça com as estrelas e a criatividade se funde com o espaço infinito da inovação. Paixão por programação, pronta para levar seus projetos além das estrelas!
 					</h2>
@@ -132,11 +130,11 @@ export default function Home() {
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
 				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
 					<div className="flex w-full justify-center flex-1 items-center py-10 ">
-						<div className=" h-[40vh] md:h-[60vh] xl:h-[70vh] w-full rounded-3xl border-4 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
+						<div className=" h-[40vh] md:h-[60vh] xl:h-[70vh] w-full rounded-xl border-8 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
 							<Image
 								src={Astronauta}
 								alt="Astronauta"
-								className="object-cover drop-shadow-2xl"
+								className="object-cover drop-shadow-2xl rounded-lg"
 								fill
 							/>
 						</div>
@@ -240,7 +238,7 @@ export default function Home() {
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Projetos
 					</h2>
-					<div className="grid md:grid-cols-2 gap-y-10 gap-x-5 pt-10 pb-6">
+					<div className="grid lg:grid-cols-2 gap-y-10 gap-x-5 pt-10 pb-6">
 						{viewMore ?
 							Projects.map((item: IProject, index) => (
 								<ProjectCard item={item} key={index} />
@@ -251,10 +249,10 @@ export default function Home() {
 						}
 					</div>
 					{Projects.length >= 4 && (
-						<Card className="flex justify-center items-center  w-full max-w-6xl py-1" onClick={() => {
+						<Card className="flex justify-center items-center  w-full max-w-7xl py-1" onClick={() => {
 							setViewMore(!viewMore)
 						}} >
-							<h2 className="text-xl font-display text-center inline-flex gap-2 items-center text-transparent text-edge-outline cursor-default  2xl:whitespace-nowrap xl:text-2xl text-ellipsis bg-clip-text  font-bold ">
+							<h2 className="text-xl text-center inline-flex gap-2 items-center text-white cursor-default  2xl:whitespace-nowrap xl:text-2xl font-bold ">
 								Ver {viewMore ? "menos" : "mais"}
 								<BsArrowDown className={`inline text-white h-5 w-5 ${viewMore && "rotate-180"} transition-transform duration-300`} />
 							</h2>
