@@ -3,8 +3,8 @@ import Particles from "./components/particles";
 
 export default function NotFound() {
 	return (
-		<div className="w-screen h-screen">
-			<Particles className="w-screen h-screen" quantity={500
+		<div className="w-screen h-screen ">
+			<Particles className="w-screen h-screen" quantity={300
 			} />
 			<div className="absolute inset-0 flex justify-center flex-col items-center ">
 				<h1 className="z-10 text-5xl text-transparent text-edge-outline cursor-default font-bold font-display sm:text-[10rem] xl:text-[18rem] 2xl:text-[20rem] 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text mb-2">

@@ -1,10 +1,7 @@
 "use client"
-import { Popover, Transition } from "@headlessui/react";
-
 import {
-	BsFillBasket3Fill,
 	BsFillTelephoneFill,
-	BsInfoCircleFill,
+	BsRocketTakeoffFill,
 	BsXLg,
 } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -14,27 +11,33 @@ import { Logo } from "./logo";
 import { NavItems } from "./navItems";
 import { Card } from "./card";
 import { navigation } from "./footer";
-
+import { FaEarthAmericas } from "react-icons/fa6";
+import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 const ItemsNavbarOptions = [
 	{
 		name: "Sobre",
-		icon: BsInfoCircleFill,
-		href: "#sobre",
+		icon: FaEarthAmericas,
+		href: "/#sobre",
 	},
 	{
 		name: "Projetos",
-		icon: BsFillBasket3Fill,
-		href: "#projetos",
+		icon: AiOutlineFundProjectionScreen,
+		href: "/#projetos",
 	},
 	{
 		name: "Contato",
 		icon: BsFillTelephoneFill,
-		href: "#contato",
+		href: "/#contato",
+	},
+	{
+		name: "Orçamento",
+		icon: BsRocketTakeoffFill,
+		href: "/orcamento",
 	},
 ];
 
-export const Navigation: React.FC = () => {
+export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 	const [navPosition, setNavPosition] = useState(false);
 	const [open, setOpen] = useState(false);
 
@@ -45,6 +48,7 @@ export const Navigation: React.FC = () => {
 	};
 
 	useEffect(() => {
+
 		window.addEventListener("scroll", listenScrollEvent);
 		return () => {
 			window.removeEventListener("scroll", listenScrollEvent);
@@ -53,10 +57,10 @@ export const Navigation: React.FC = () => {
 
 	return (
 		<>
-			<header className={`border-b  border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0`}>
+			<header className={home ? `border-b  border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0` : "z-50 fixed top-0 inset-x-0 border-b  bg-zinc-900  border-zinc-800 transition-colors "}>
 				<div className="max-w-6xl flex items-center justify-between pb-2.5 pt-2.5 px-4 mx-auto">
 					<Logo />
-					<div className="hidden md:inline-flex justify-between gap-8  items-center">
+					<div className="hidden md:inline-flex justify-between gap-5 text-sm items-center">
 						<NavItems items={ItemsNavbarOptions} />
 					</div>
 

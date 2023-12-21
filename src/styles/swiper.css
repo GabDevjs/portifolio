@@ -23,3 +23,16 @@
   -webkit-align-items: center;
   align-items: center;
 }
+
+.mySwiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  color: transparent;
+  opacity: 1;
+  background: rgba(200, 200, 200, 0.3);
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  @apply bg-blue-500;
+}

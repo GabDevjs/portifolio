@@ -20,7 +20,7 @@ export const navigation = {
     },
     {
       name: "Whatsapp",
-      href: "https://wa.me/5511981154749",
+      href: "https://api.whatsapp.com/send?phone=5511981154749&text=Ol%C3%A1!%20%F0%9F%91%8B%20Estou%20interessado(a)%20nos%20seus%20servi%C3%A7os.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20projetos%20que%20voc%C3%AA%20realiza?%20Obrigado!",
       icon: BsWhatsapp,
     },
   ],

@@ -1,15 +1,20 @@
 import "../styles/index.css";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
+import Script from "next/script";
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
+
 	title: {
 		default: "Flavio Gabriel | Desenvolvedor Freelancer",
 		template: "%s | Flavio Gabriel ~ Desenvolvedor Freelancer",
 	},
 	description: "Explore meu universo digital, onde cada linha de código conta uma história e cada projeto é uma jornada única. Como um programador freelancer apaixonado pelo espaço, transformo ideias em realidade digital, criando websites e aplicativos que transcendem os limites do ordinário.",
-
 	robots: {
 		index: true,
 		follow: true,
@@ -24,6 +29,22 @@ export const metadata: Metadata = {
 	icons: {
 		shortcut: "/logo.png",
 	},
+	openGraph: {
+		type: "website",
+		locale: "pt_BR",
+		url: "https://flaviogabrielportfolio.com.br",
+		title: "Flavio Gabriel | Desenvolvedor Freelancer",
+		description: "Explore meu universo digital, onde cada linha de código conta uma história e cada projeto é uma jornada única. Como um programador freelancer apaixonado pelo espaço, transformo ideias em realidade digital, criando websites e aplicativos que transcendem os limites do ordinário.",
+		images: [
+			{
+				url: "/og.png",
+				width: 400,
+				height: 300,
+				alt: "Flavio Gabriel | Desenvolvedor Freelancer",
+			},
+		],
+		emails: ["flaviogabrielsr0507@gmail.com"]
+	}
 };
 
 const inter = Inter({
@@ -37,15 +58,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={[inter.variable].join(" ")} suppressHydrationWarning={true}>
+		<html lang="pt-br" className={[inter.variable].join(" ")} suppressHydrationWarning={true}>
 			<head>
 				<Analytics />
 			</head>
 			<body
-				className={`bg-gray-950 bg-gradient-to-tl from-neutral-950 via-neutral-600/30 overflow-x-hidden bg-fixed to-neutral-950 ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
+				className={` ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
 				{children}
+				<Script src="https://server.fillout.com/embed/v1/" strategy="beforeInteractive" />
 			</body>
 		</html>
 	);

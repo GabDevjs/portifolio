@@ -1,9 +1,7 @@
-import { IProject } from "@/data/projects.d"
+import { IProject } from "@/data/data"
 import Link from "next/link"
 import Image from "next/image"
-import { BsPlusLg } from "react-icons/bs"
 import { FaPaperPlane } from "react-icons/fa";
-import { ProjectViewMore } from "./projectViewMore";
 import { useState } from "react";
 
 interface IProjectCardProps {
@@ -14,7 +12,6 @@ interface IProjectCardProps {
 
 export const ProjectCard = (props: IProjectCardProps) => {
   const { item } = props
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -22,7 +19,7 @@ export const ProjectCard = (props: IProjectCardProps) => {
         <Link
           href={item.link}
           target="_blank"
-          className="w-full rounded-lg overflow-hidden relative h-[40vh]">
+          className="w-full rounded-lg overflow-hidden relative h-[50vh]">
           {item.mainImage ? (
             <Image
               src={item.mainImage}
@@ -56,17 +53,9 @@ export const ProjectCard = (props: IProjectCardProps) => {
               {item.description}
             </p>
           </div>
-          <div className="flex items-center gap-4 px-1 text-sm">
-            <button
-              type="button"
-              onClick={() => setIsOpen(true)}
-              className="relative py-1.5 px-6 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
-            >
-              <BsPlusLg className="h-6 w-6" aria-hidden="true" />
-              <span>Ver Mais</span>
-            </button>
+          <div className="flex items-center flex-wrap gap-3 px-1 text-sm">
             <Link href={item.link}
-              className="relative py-1.5 px-6 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+              className="relative py-1.5 px-6 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0 whitespace-nowrap"
               target="_blank"
             >
               <FaPaperPlane className="h-4 w-4" aria-hidden="true" />
@@ -75,7 +64,6 @@ export const ProjectCard = (props: IProjectCardProps) => {
           </div>
         </div>
       </div>
-      <ProjectViewMore item={item} isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
   )
 }

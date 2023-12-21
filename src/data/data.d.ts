@@ -16,3 +16,8 @@ export interface IProject {
     link: string;
   }[];
 }
+
+export interface IServices {
+  title: string;
+  description: string;
+}

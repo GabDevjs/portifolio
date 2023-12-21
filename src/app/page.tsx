@@ -11,14 +11,17 @@ import dynamic from "next/dynamic";
 import { Particles3d } from "./components/particles3d";
 import Particles from "./components/particles";
 import { Projects } from "@/data/projects";
-import { IProject } from "@/data/projects.d";
+import { IProject } from "@/data/data";
 import { ProjectCard } from "./components/projectCard";
 import { useForm } from "react-hook-form";
 import { createErrorToast } from "../util/ToatsNotification";
-import { sendMailer } from "../services/sendMailer";
-import { useRouter, usePathname } from "next/navigation";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { PatternFormat } from "react-number-format"
 import ClipLoader from "react-spinners/ClipLoader";
+import { Services } from "@/data/services";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
@@ -34,6 +37,15 @@ export default function Home() {
 	const [phoneValue, setPhoneValue] = useState("");
 	const router = useRouter();
 
+	const handleClearValues = () => {
+		reset();
+		setValue("name", "");
+		setValue("email", "");
+		setValue("phone", "");
+		setValue("mensagem", "");
+		setPhoneValue("");
+	}
+
 	const handleSubmitContact = async (data: any) => {
 		setIsLoading(true);
 		data = {
@@ -41,46 +53,19 @@ export default function Home() {
 				name: data.name,
 				email: data.email,
 				phone: data.phone,
-			},
-			config: {
-				completo: false,
-				path: usePathname(),
-			},
+				mensagem: data.mensagem,
+			}
 		};
 
-		const res = await sendMailer(data);
-
-
-		if (res.status == 422) {
-			createErrorToast(`${res.data.menssagem}`);
-			return;
-		}
-
-		if (res.status == 200) {
-			setIsLoading(false);
-			reset();
-			setPhoneValue("");
-			setValue("name", "");
-			setValue("email", "");
-			setValue("phone", "");
+		await axios.post("/api/email", data).then(() => {
+			handleClearValues();
 			router.push("/obrigado");
-			return;
-		}
-
-		if (res.status == 500) {
-			reset();
-			setPhoneValue("");
-			setValue("name", "");
-			setValue("email", "");
-			setValue("phone", "");
-			createErrorToast(
-				"Erro ao enviar a mensagem, tente novamente mais tarde!"
-			);
-			return;
-		}
-
-		createErrorToast("Erro ao enviar a mensagem, tente novamente mais tarde!");
-		setIsLoading(false);
+		}).catch((err) => {
+			console.log(err);
+			createErrorToast("Erro ao enviar a mensagem, tente novamente mais tarde!");
+		}).finally(() => {
+			setIsLoading(false);
+		})
 	};
 
 	useEffect(() => {
@@ -102,7 +87,7 @@ export default function Home() {
 					<Particles3d />
 				)}
 			</div>
-			<Navigation />
+			<Navigation home />
 			<section className="flex md:px-4 justify-center items-center h-screen  max-w-7xl relative w-full flex-col z-10">
 				<h1 className="z-10 font-bold text-xl text-transparent text-edge-outline animate-fade-in cursor-default font-display md:text-3xl 2xl:text-4xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text">
 					Flavio Gabriel,<br className="inline md:hidden" /> Programador Freelancer
@@ -119,7 +104,7 @@ export default function Home() {
 						Bem-vindo ao seu universo digital, onde o código se entrelaça com as estrelas e a criatividade se funde com o espaço infinito da inovação. Paixão por programação, pronta para levar seus projetos além das estrelas!
 					</h2>
 				</div>
-				<div className="flex justify-center items-center flex-wrap pt-6	md:mb-10 gap-2 gap-y-5 md:gap-6 w-full text-sm animate-fade-in">
+				<div className="flex justify-center items-center flex-wrap pt-6	xl:mb-10 gap-2 gap-y-5 md:gap-6 w-full text-sm animate-fade-in">
 					<Link href="/orcamento"
 						className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
 					>
@@ -130,7 +115,9 @@ export default function Home() {
 					<span className="text-gray-300/90 text-sm ">
 						ou
 					</span>
-					<Link href="#sobre"
+					<Link
+						href="https://api.whatsapp.com/send?phone=5511981154749&text=Ol%C3%A1!%20%F0%9F%91%8B%20Estou%20interessado(a)%20nos%20seus%20servi%C3%A7os.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20projetos%20que%20voc%C3%AA%20realiza?%20Obrigado!"
+						target="_blank"
 						className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-green-500 before:to-green-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
 					>
 						<BsWhatsapp className="h-5 w-5" />
@@ -144,12 +131,12 @@ export default function Home() {
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
 				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
-					<div className="flex justify-center flex-1 items-center py-10 ">
-						<div className=" h-[70vh] w-full rounded-3xl border-4 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
+					<div className="flex w-full justify-center flex-1 items-center py-10 ">
+						<div className=" h-[40vh] md:h-[60vh] xl:h-[70vh] w-full rounded-3xl border-4 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
 							<Image
 								src={Astronauta}
 								alt="Astronauta"
-								className="object-cover animate-fade-in drop-shadow-2xl"
+								className="object-cover drop-shadow-2xl"
 								fill
 							/>
 						</div>
@@ -184,48 +171,72 @@ export default function Home() {
 				</div >
 			</section >
 
-			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-10 mb-20">
+			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
 				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Serviços
 					</h2>
-					<div className="w-full flex justify-center flex-wrap items-center gap-x-4 gap-y-6 pt-10 ">
-						<Card className="sm:max-w-sm">
-							<div className="py-20 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
-									Landing Page
-								</h3>
-								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
-									Descubra o poder de uma primeira impressão memorável com nossa Landing Page Espacial. Criada com um design intergaláctico, esta página não apenas cativa os visitantes, mas também os leva a uma jornada estelar através de sua marca. Deixe sua presença online decolar!
-								</p>
-							</div>
-						</Card>
-						<Card className="sm:max-w-sm">
-							<div className="py-20 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
-									Site Institucional
-								</h3>
-								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
-									Transmita a essência da sua empresa com nosso Site Institucional Estelar. Cada página é uma constelação de informações relevantes e visualmente deslumbrantes, criando uma narrativa envolvente para seus clientes. Deixe sua marca brilhar no vasto cosmos da internet.
-								</p>
-							</div>
-						</Card>
-						<Card className="sm:max-w-sm">
-							<div className="py-16 px-4 flex flex-col gap-4">
-								<h3 className="text-2xl font-display text-center cursor-default sm:text-3xl mb-2 text-gray-100 ">
-									Outros Serviços
-								</h3>
-								<p className="text-sm text-center xl:text-base text-gray-300/70 ">
-									Além disso, oferecemos uma variedade de outros serviços que se adaptam às suas necessidades, desde desenvolvimento de aplicativos móveis inovadores até soluções de comércio eletrônico que expandem suas fronteiras comerciais. Nosso objetivo é transformar suas visões em realidade digital, não importa quão ambiciosas sejam.
-								</p>
-							</div>
-						</Card>
+					<div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
+						{!isMobile ? (
+							Services.map((item, index) => (
+								<Card className="" key={index}>
+									<div className="py-20 px-4 flex flex-col gap-4">
+										<h3 className="text-xl font-display text-center cursor-default lg:text-2xl mb-2 text-gray-100 ">
+											{item.title}
+										</h3>
+										<p className="text-sm text-center xl:text-base text-gray-300/70 ">
+											{item.description}
+										</p>
+									</div>
+								</Card>
+							))) : (
+							<Swiper
+								breakpoints={{
+									640: {
+										slidesPerView: 1,
+										spaceBetween: 30
+									},
+									768: {
+										slidesPerView: 2,
+										spaceBetween: 30
+									},
+									1024: {
+										slidesPerView: 3,
+										spaceBetween: 30
+									}
+								}}
+								pagination={{
+									clickable: true
+								}}
+								autoplay={{
+									delay: 5000,
+									disableOnInteraction: false
+								}}
+								modules={[Pagination, Autoplay]}
+								className="mySwiper flex justify-center items-center h-full"
+							>
+								{Services.map((item, index) => (
+									<SwiperSlide key={index} className="w-full flex justify-center items-center">
+										<Card className="w-full  h-[50vh]">
+											<div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
+												<h3 className="text-xl font-display text-center cursor-default lg:text-2xl mb-2 text-gray-100 ">
+													{item.title}
+												</h3>
+												<p className="text-sm text-center xl:text-base text-gray-300/70 ">
+													{item.description}
+												</p>
+											</div>
+										</Card>
+									</SwiperSlide>
+								))}
+							</Swiper>
+						)}
 					</div>
 				</div>
 			</section>
 
-			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center xl:mt-20 xl:mb-12">
-				<div className="flex justify-between items-center flex-col w-full max-w-6xl">
+			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pt-10 xl:pt-20 mb-12">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Projetos
 					</h2>
@@ -252,18 +263,18 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id="contato" aria-label="contato" className="flex flex-col items-center justify-center w-full mt-10">
-				<Card className="max-w-6xl w-full rounded-3xl ">
+			<section id="contato" aria-label="contato" className="flex max-w-7xl flex-col items-center justify-center w-full mt-10">
+				<Card className=" w-full rounded-3xl ">
 					<form onSubmit={handleSubmit(handleSubmitContact)}
-						className="grid md:grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
-						<div className="py-2 md:py-3 md:col-span-2 px-4 md:px-[5vw]">
+						className="grid grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
+						<div className="py-2 md:py-3 col-span-2 px-4 ">
 							<h2 className="text-4xl md:text-6xl xl:text-7xl font-semibold text-gray-100">
 								Tem uma ideia incrível? <br /> Vamos dar vida a isso.
 							</h2>
 						</div>
-						<div className="py-3 px-2 col-span-1 group">
+						<div className="py-3 px-2 col-span-2 md:col-span-1 group">
 							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 group-focus:translate-x-0 group-focus:translate-y-0">
-								Name
+								Nome
 							</label>
 							<div className="relative mt-2">
 								<input
@@ -279,7 +290,7 @@ export default function Home() {
 								/>
 							</div>
 						</div>
-						<div className="py-3 px-2 col-span-1">
+						<div className="py-3 px-2 col-span-2 md:col-span-1">
 							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 peer-focus:translate-x-0 peer-focus:translate-y-0">
 								E-mail
 							</label>
@@ -324,7 +335,7 @@ export default function Home() {
 								/>
 							</div>
 						</div>
-						<div className="py-3 px-2 col-span-1 pt-10 md:col-span-2">
+						<div className="py-3 px-2 col-span-2 pt-10 md:col-span-2">
 							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 peer-focus:translate-x-0 peer-focus:translate-y-0">
 								Mensagem
 							</label>
@@ -341,26 +352,23 @@ export default function Home() {
 								/>
 							</div>
 						</div>
-						<div className="py-3  md:col-span-2 flex justify-end px-4 md:px-[10vw]">
+						<div className="py-3  col-span-2 flex justify-end px-4 md:px-[10vw]">
 							<button
 								type="submit"
-								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0"
-								disabled={isLoading}
+								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0  justify-center"
 							>
-								{
-									isLoading ?
-										<span>
-											<ClipLoader color="#ffffff" loading={isLoading} size={20} />
-										</span>
-										:
-										<span >Enviar</span>
-								}
+								{isLoading ?
+									<span>
+										<ClipLoader color="#ffffff" loading={isLoading} size={30} />
+									</span>
+									:
+									<span>Enviar</span>}
 							</button>
 						</div>
 					</form>
 				</Card>
 			</section >
 			<Footer />
-		</div >
+		</div>
 	);
 }

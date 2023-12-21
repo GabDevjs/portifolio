@@ -1,4 +1,4 @@
-import { IProject } from './projects.d'
+import { IProject } from './data'
 import travel from '../../public/projectsImgs/banner1.webp'
 import pet from '../../public/projectsImgs/banner2.webp'
 import pizzaria from '../../public/projectsImgs/banner3.webp'

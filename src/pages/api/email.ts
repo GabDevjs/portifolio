@@ -6,38 +6,36 @@ const envVariavelPassword = process.env.NEXT_PUBLIC_EMAILPASSWORD;
 const envBaseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const transporter = nodemailer.createTransport({
-  service: "email-ssl.com.br",
-  host: "email-ssl.com.br",
-  port: 465,
+  host: "smtpout.secureserver.net",
   secure: true,
+  secureConnection: false, // TLS requires secureConnection to be false
   tls: {
-    rejectUnauthorized: false,
+    ciphers: 'SSLv3'
   },
+  requireTLS: true,
+  port: 465,
+  debug: true,
   auth: {
     user: `${envVariavelEmail}`,
     pass: `${envVariavelPassword}`,
   }
-});
+} as nodemailer.TransportOptions);
 
-const mailer = ({ email, name, phone, menssagem, config }: {
+const mailer = ({ email, name, phone, menssagem }: {
   email: string;
   name: string;
   phone: string;
   menssagem?: string;
-  config: {
-    path: string;
-    completo: boolean;
-  };
 }) => {
   const from = name
-    ? `${name} <${envVariavelEmail}>`
+    ? `<${envVariavelEmail}>`
     : `Site <${envVariavelEmail}>`;
 
   const message = {
     from,
-    to: "flaviogabrielsr0507@gmail.com",
+    to: `${envVariavelEmail || "flaviogabrielsr0507@gmail.com"}`,
     subject: `[ Nova leed ] - ${name ? name : ""}`,
-    text: "Nova leed capturada do site da prospecta",
+    text: "Nova leed capturada do site Portfolio ",
     html: `
         <div style="
           width: 100%;
@@ -116,17 +114,11 @@ style="
         ? `<p style="
             margin: 0 0 20px;
             ">
-        <strong>Menssagem enviado por ${name ? name : ""}:</strong> ${menssagem}
+        <strong>Menssagem:</strong> ${menssagem}
         </p>
         `
         : ""
       }
-    </div>
-
-    <div style="width: 50%;">
-        <p style="margin: 0 0 20px;">
-            <strong>Enviado de:</strong> <span>${envBaseURL}${config.path}</span> 
-        </p>
     </div>
 </div>
 
@@ -149,6 +141,7 @@ style="
     replayTo: from,
   };
 
+  console.log(envVariavelEmail, envVariavelPassword, envBaseURL)
   return new Promise((resolve, reject) => {
     transporter.sendMail(message, (err, info) => {
       if (err) {
@@ -162,40 +155,9 @@ style="
 
 // Path: src\pages\api\email.js
 export default async (req: { body: { config: any; body: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; }): any; new(): any; }; }; send: (arg0: unknown) => any; }) => {
-  const { config, body } = req.body;
+  const { body } = req.body;
 
-  const { completo } = config;
-
-  if (completo) {
-    const { name, email, phone, menssagem } = body;
-
-    if (!email) {
-      createErrorToast("Preencha o compo email");
-    }
-    if (!name) {
-      createErrorToast("Preencha o compo nome");
-    }
-    if (!phone) {
-      createErrorToast("Preencha o compo telefone");
-    }
-
-    if (!email || !name || !phone) {
-      return res.status(422).json({ message: "Preencha todos os campos" });
-    }
-
-    const mailerRes = await mailer({
-      email,
-      name,
-      phone,
-      menssagem,
-      config,
-    });
-
-
-    return res.send(mailerRes);
-  }
-
-  const { email, name, phone } = body;
+  const { email, name, phone, menssagem } = body;
 
   if (!email) {
     createErrorToast("Preencha o compo email");
@@ -203,11 +165,8 @@ export default async (req: { body: { config: any; body: any; }; }, res: { status
   if (!name) {
     createErrorToast("Preencha o compo nome");
   }
-  if (!phone) {
-    createErrorToast("Preencha o compo telefone");
-  }
 
-  if (!email || !name || !phone) {
+  if (!email || !name) {
     return res.status(422).json({ message: "Preencha todos os campos" });
   }
 
@@ -215,7 +174,7 @@ export default async (req: { body: { config: any; body: any; }; }, res: { status
     email,
     name,
     phone,
-    config,
+    menssagem
   });
 
   return res.send(mailerRes);
