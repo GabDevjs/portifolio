@@ -92,7 +92,7 @@ export default function Home() {
 				</h1>
 				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="z-10 animate-title w-full">
-					<h1 className="text-[2.5rem] text-white cursor-default font-bold leading-10 sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
+					<h1 className="text-[2.3rem] text-white cursor-default font-bold lg:leading-10 sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
 						Seu Espaço para  Inovação <br className="hidden 2xl:block" /> Digital
 					</h1>
 				</div>
@@ -280,6 +280,7 @@ export default function Home() {
 									id="name"
 									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									placeholder=""
+									alt="Input de nome"
 									{...register("name")}
 								/>
 								<div
@@ -298,6 +299,7 @@ export default function Home() {
 									id="email"
 									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
 									placeholder=""
+									alt="Input de email"
 									{...register("email")}
 								/>
 								<div
@@ -323,6 +325,7 @@ export default function Home() {
 									}) => {
 										setValue("phone", value);
 									}}
+									alt="Input de telefone"
 									onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => {
 										setPhoneValue(e.target.value);
 									}}

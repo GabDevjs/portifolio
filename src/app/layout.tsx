@@ -4,7 +4,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import { Analytics } from "./components/analytics";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -60,14 +59,23 @@ export default function RootLayout({
 	return (
 		<html lang="pt-br" className={[inter.variable].join(" ")} suppressHydrationWarning={true}>
 			<head>
-				<Analytics />
+				<Script>{`function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MX64LJX2');`}</Script>
 			</head>
 			<body
 				className={` ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
+				<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MX64LJX2"
+					height="0" width="0" style={{
+						display: 'none',
+						visibility: 'hidden'
+					}}></iframe></noscript>
 				{children}
 			</body>
-		</html>
+		</html >
 	);
 }
