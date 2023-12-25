@@ -4,7 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation"
 import Script from "next/script"
 import { useEffect } from "react"
 
-export default function Analytics() {
+export default function GtmAnalytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
 

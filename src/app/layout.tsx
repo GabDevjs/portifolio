@@ -6,7 +6,8 @@ import { Inter } from "next/font/google";
 import { Metadata } from "next";
 import Script from "next/script";
 import { Suspense } from "react";
-import Analytics from "./components/analytics";
+import GtmAnalytics from "./components/analytics";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
@@ -61,23 +62,17 @@ export default function RootLayout({
 	return (
 		<html lang="pt-br" className={[inter.variable].join(" ")} suppressHydrationWarning={true}>
 			<head>
+				<Suspense>
+					<GtmAnalytics />
+				</Suspense>
 			</head>
 			<body
 				className={` ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
-				<Suspense>
-					<Analytics />
-				</Suspense>
+				<Analytics />
 				{children}
 			</body>
 		</html >
 	);
 }
-
-
-/*
-<Script id="google-analytics" strategy="afterInteractive">
-					{`window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-J3X01S8XPX');`}
-				</Script>
-*/

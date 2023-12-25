@@ -30,6 +30,7 @@
     "@splinetool/runtime": "^0.9.493",
     "@types/three": "^0.158.2",
     "@upstash/redis": "^1.23.3",
+    "@vercel/analytics": "^1.1.1",
     "axios": "^1.6.2",
     "contentlayer": "^0.3.4",
     "framer-motion": "^10.16.4",
