@@ -1,0 +1,19 @@
+# *
+User-agent: *
+Allow: /
+
+# googlebot
+User-agent: googlebot
+Allow: /
+Allow: /orcamento
+
+# bingbot
+User-agent: bingbot
+Allow: /
+Allow: /orcamento
+
+# Host
+Host: https://www.flaviogabrielportfolio.com.br/
+
+# Sitemaps
+Sitemap: https://www.flaviogabrielportfolio.com.br/sitemap.xml

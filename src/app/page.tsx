@@ -263,7 +263,7 @@ export default function Home() {
 
 			<section id="contato" aria-label="contato" className="flex max-w-7xl flex-col items-center justify-center w-full mt-10">
 				<Card className=" w-full rounded-3xl ">
-					<form onSubmit={handleSubmit(handleSubmitContact)}
+					<form id="form" onSubmit={handleSubmit(handleSubmitContact)}
 						className="grid grid-cols-2 gap-y-10 gap-x-5 py-10 px-2 md:px-5">
 						<div className="py-2 md:py-3 col-span-2 px-4 ">
 							<h2 className="text-4xl md:text-6xl xl:text-7xl font-semibold text-gray-100">
