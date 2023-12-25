@@ -45,7 +45,7 @@ export default function Orcamento() {
 					</p>
 				</div>
 				<Suspense fallback={<div>Loading...</div>}>
-					<div className="w-full h-screen backdrop-blur-sm border border-gray-300/20 rounded-lg" data-fillout-id="5quBpsCgsgus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+					<div className="w-full h-screen backdrop-blur-sm border border-gray-300/20 rounded-lg" data-fillout-id="5quBpsCgsgus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize ></div>
 					<Script src="https://server.fillout.com/embed/v1/" />
 				</Suspense>
 			</section>
