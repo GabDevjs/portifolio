@@ -32,9 +32,9 @@ export const ProjectCard = (props: IProjectCardProps) => {
             <div className="w-full h-[200px] rounded-xl bg-gray-200/10 animate-fade-in" />
           )}
         </Link>
-        <div className="flex pt-4 md:pt-0 flex-col h-[30vh]  justify-between gap-4">
+        <div className="flex pt-4 md:pt-0 flex-col lg:h-[30vh]  justify-between gap-4">
           <div className=" justify-center items-center w-full">
-            <div className="flex items-center mb-3 gap-2">
+            <div className="flex items-center mb-3 gap-2 flex-wrap lg:flex-row">
               <span className="inline-flex items-center justify-center px-3 py-1 text-sm font-bold leading-none text-gray-100 bg-gray-200/10 rounded-full border border-gray-100/20">
                 {item.year.toString()}
               </span>
