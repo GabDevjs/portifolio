@@ -11,7 +11,6 @@ import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
-
 	title: {
 		default: "Flavio Gabriel | Desenvolvedor Freelancer",
 		template: "%s | Flavio Gabriel ~ Desenvolvedor Freelancer",
@@ -31,6 +30,7 @@ export const metadata: Metadata = {
 	icons: {
 		shortcut: "/logo.png",
 	},
+	themeColor: "#030712",
 	openGraph: {
 		type: "website",
 		locale: "pt_BR",
