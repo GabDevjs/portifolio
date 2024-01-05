@@ -18,17 +18,17 @@ const ItemsNavbarOptions = [
 	{
 		name: "Sobre",
 		icon: FaEarthAmericas,
-		href: "/#sobre",
+		href: "/sobre",
 	},
 	{
 		name: "Projetos",
 		icon: AiOutlineFundProjectionScreen,
-		href: "/#projetos",
+		href: "/projetos",
 	},
 	{
 		name: "Contato",
 		icon: BsFillTelephoneFill,
-		href: "/#contato",
+		href: "/contato",
 	},
 	{
 		name: "Orçamento",
@@ -57,10 +57,10 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 
 	return (
 		<>
-			<header className={home ? `border-b  border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}   transition-colors  animate-fade-in z-50 fixed top-0 inset-x-0` : "z-50 fixed top-0 inset-x-0 border-b  bg-zinc-900  border-zinc-800 transition-colors "}>
-				<div className="max-w-7xl flex items-center justify-between pb-2.5 pt-2.5 px-4 mx-auto">
+			<header className={home ? `border-b transition-colors  animate-fade-in border-transparent ${navPosition && !open && "bg-zinc-900  border-zinc-800"}    z-50 fixed top-0 inset-x-0` : "z-50 fixed top-0 inset-x-0 border-b  bg-zinc-900  border-zinc-800 transition-colors "}>
+				<div className="max-w-7xl flex items-center justify-between py-3 px-4 mx-auto">
 					<Logo />
-					<div className="hidden md:inline-flex justify-between gap-5 text-sm items-center">
+					<div className="hidden md:inline-flex justify-between gap-8 text-sm items-center">
 						<NavItems items={ItemsNavbarOptions} />
 					</div>
 
@@ -70,9 +70,9 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 						}} className="flex text-gray-300/90 items-center justify-between w-full text-lg p-1.5 border border-gray-200 border-opacity-10 bg-gray-100 bg-opacity-10 rounded-full hover:scale-110 transition-all duration-200 focus:outline-none">
 							<span className="sr-only">Open main menu</span>
 							{open ? (
-								<BsXLg className="block h-6 w-6" />
+								<BsXLg className="block h-8 w-8" />
 							) : (
-								<HiMenuAlt3 className="block h-6 w-6" aria-hidden="true" />
+								<HiMenuAlt3 className="block h-8 w-8" aria-hidden="true" />
 							)}
 						</button>
 					</div>
@@ -80,7 +80,7 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 			</header>
 
 			{open && (
-				<div className="fixed inset-0 z-20 bg-neutral-900 animate-fade-card-in pt-16 p-4 overflow-hidden">
+				<div className="fixed inset-0 z-20 bg-neutral-900 animate-fade-card-in pt-20 p-4 overflow-hidden">
 					<Card className="flex flex-col items-center h-full px-4">
 						<div className="flex flex-col items-center justify-center h-[70%] w-full" onClick={() => {
 							setOpen(!open);

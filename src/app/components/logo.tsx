@@ -7,8 +7,8 @@ export const Logo = () => (
     <Image
       src={LogoImg}
       alt='Logo'
-      width={35}
-      height={35}
+      width={40}
+      height={40}
       priority
       className='opacity-90'
     />

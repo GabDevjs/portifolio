@@ -34,16 +34,12 @@ export default function Home() {
 
 	const [isLoading, setIsLoading] = useState(false);
 
-	const [phoneValue, setPhoneValue] = useState("");
 	const router = useRouter();
 
 	const handleClearValues = () => {
 		reset();
 		setValue("name", "");
 		setValue("email", "");
-		setValue("phone", "");
-		setValue("mensagem", "");
-		setPhoneValue("");
 	}
 
 	const handleSubmitContact = async (data: any) => {
@@ -52,8 +48,6 @@ export default function Home() {
 			body: {
 				name: data.name,
 				email: data.email,
-				phone: data.phone,
-				mensagem: data.mensagem,
 			}
 		};
 
@@ -130,7 +124,7 @@ export default function Home() {
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
 				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
 					<div className="flex w-full justify-center flex-1 items-center py-10 ">
-						<div className=" h-[40vh] md:h-[60vh] xl:h-[70vh] w-full rounded-xl border-8 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
+						<div className=" h-[40vh] md:h-[26rem] xl:h-[33rem] w-full rounded-xl border-8 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
 							<Image
 								src={Astronauta}
 								alt="Astronauta"
@@ -146,7 +140,7 @@ export default function Home() {
 						<h2 className="text-3xl font-display font-bold cursor-default sm:text-4xl md:text-5xl mb-2 text-gray-200 ">
 							Transformando Códigos em Experiências Inovadoras
 						</h2>
-						<p className="text-sm xl:text-base mt-10 text-gray-300/70 ">
+						<p className="text-sm xl:text-base  text-gray-300/70 ">
 							Há mais de dois anos, iniciei minha jornada na programação e desde então, a paixão por desenvolvimento só cresceu. Sou um profissional dedicado, especializado como desenvolvedor full-stack e webdesign. Com um ano de experiência, já desenvolvi uma variedade de projetos, desde sites institucionais e Landing Pages até sistemas empresariais complexos.
 							<br />
 							<br />
@@ -301,51 +295,6 @@ export default function Home() {
 									placeholder=""
 									alt="Input de email"
 									{...register("email")}
-								/>
-								<div
-									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"
-									aria-hidden="true"
-								/>
-							</div>
-						</div>
-						<div className="py-3 px-2 col-span-2">
-							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 peer-focus:translate-x-0 peer-focus:translate-y-0">
-								Telefone
-							</label>
-							<div className="relative mt-2">
-								<PatternFormat
-									name="phone"
-									type="tel"
-									format="(##) #####-####"
-									value={phoneValue || ""}
-									required
-									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
-									onValueChange={({ value }: {
-										value: string
-									}) => {
-										setValue("phone", value);
-									}}
-									alt="Input de telefone"
-									onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => {
-										setPhoneValue(e.target.value);
-									}}
-								/>
-								<div
-									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"
-									aria-hidden="true"
-								/>
-							</div>
-						</div>
-						<div className="py-3 px-2 col-span-2 pt-10 md:col-span-2">
-							<label htmlFor="name" className="block text-xl 2xl:text-2xl font-medium leading-6 text-gray-300 translate-x-2 translate-y-2 peer-focus:translate-x-0 peer-focus:translate-y-0">
-								Mensagem
-							</label>
-							<div className="relative mt-2">
-								<textarea
-									id="mensagem"
-									className="peer block w-full border-0 bg-transparent placeholder-gray-400 focus:outline-none px-2 py-2 text-gray-200 focus:ring-0 text-lg 2xl:text-xl  sm:leading-6"
-									placeholder=""
-									{...register("mensagem")}
 								/>
 								<div
 									className="absolute inset-x-0 bottom-0 border-t border-gray-200 peer-focus:border-t-2 peer-focus:border-sky-500"

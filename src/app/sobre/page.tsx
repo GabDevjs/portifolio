@@ -1,18 +1,10 @@
-import "../styles/index.css";
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import Script from "next/script";
-import { Suspense } from "react";
-import GtmAnalytics from "./components/analytics";
-import { Analytics } from '@vercel/analytics/react';
+import { SobrePageTemplate } from "./sobrePageTemplate";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
 	title: {
-		default: "Flavio Gabriel | Desenvolvedor Freelancer",
+		default: "Sobre | Flavio Gabriel ~ Desenvolvedor Freelancer",
 		template: "%s | Flavio Gabriel ~ Desenvolvedor Freelancer",
 	},
 	description: "Explore meu universo digital, onde cada linha de código conta uma história e cada projeto é uma jornada única. Como um programador freelancer apaixonado pelo espaço, transformo ideias em realidade digital, criando websites e aplicativos que transcendem os limites do ordinário.",
@@ -46,32 +38,8 @@ export const metadata: Metadata = {
 		],
 		emails: ["flaviogabrielsr0507@gmail.com"]
 	}
-};
+}
 
-const inter = Inter({
-	subsets: ["latin"],
-	variable: "--font-inter",
-});
-
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-	return (
-		<html lang="pt-br" className={[inter.variable].join(" ")} suppressHydrationWarning={true}>
-			<head>
-				<Suspense>
-					<GtmAnalytics />
-				</Suspense>
-			</head>
-			<body
-				className={` ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
-					}`}
-			>
-				<Analytics />
-				{children}
-			</body>
-		</html >
-	);
+export default function Sobre() {
+	return <SobrePageTemplate />
 }
