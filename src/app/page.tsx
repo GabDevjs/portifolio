@@ -121,48 +121,6 @@ export default function Home() {
 			<div className="w-full hidden xl:block h-[70vh] ">
 			</div>
 
-			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
-				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
-					<div className="flex w-full justify-center flex-1 items-center py-10 ">
-						<div className=" h-[40vh] md:h-[26rem] xl:h-[33rem] w-full rounded-xl border-8 border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
-							<Image
-								src={Astronauta}
-								alt="Astronauta"
-								className="object-cover drop-shadow-2xl rounded-lg"
-								fill
-							/>
-						</div>
-					</div>
-					<div className="flex justify-center flex-col flex-1 py-10 max-w-4xl ">
-						<h3 className="text-2xl font-display  text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl xl:text-4xl font-semibold text-ellipsis bg-clip-text mb-2 ">
-							Sobre Mim
-						</h3>
-						<h2 className="text-3xl font-display font-bold cursor-default sm:text-4xl md:text-5xl mb-2 text-gray-200 ">
-							Transformando Códigos em Experiências Inovadoras
-						</h2>
-						<p className="text-sm xl:text-base  text-gray-300/70 ">
-							Há mais de dois anos, iniciei minha jornada na programação e desde então, a paixão por desenvolvimento só cresceu. Sou um profissional dedicado, especializado como desenvolvedor full-stack e webdesign. Com um ano de experiência, já desenvolvi uma variedade de projetos, desde sites institucionais e Landing Pages até sistemas empresariais complexos.
-							<br />
-							<br />
-							Minha missão é otimizar a experiência do usuário em cada aplicativo, sempre buscando a máxima qualidade e inovação. Estou pronto para contribuir, criar e inovar no mundo digital.
-						</p>
-						<div className="flex items-center flex-wrap w-full gap-6 pt-5 ">
-							{navigation.social.map((item, index) => (
-								<div key={index}>
-									<Link href={item.href}
-										className="bg-gray-200/10 p-2.5 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer text-gray-100"
-										target="_blank"
-									>
-										<span className="sr-only">{item.name}</span>
-										<item.icon className="h-6 w-6" aria-hidden="true" />
-									</Link>
-								</div>
-							))}
-						</div>
-					</div>
-				</div >
-			</section >
-
 			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
 				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
@@ -254,6 +212,49 @@ export default function Home() {
 					)}
 				</div>
 			</section>
+
+			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
+				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
+					<div className="flex w-full justify-center flex-col flex-1 items-center py-10 ">
+						<div className=" h-[40vh] md:h-[26rem] xl:h-[33rem] w-full md:w-[26rem] xl:w-[33rem] rounded-full border border-transparent ring-1 ring-gray-500/50 overflow-hidden relative ">
+							<Image
+								src={Astronauta}
+								alt="Astronauta"
+								className="object-cover drop-shadow-2xl "
+								fill
+							/>
+						</div>
+						<div className="flex items-center justify-center flex-wrap w-full gap-6 pt-5 ">
+							{navigation.social.map((item, index) => (
+								<div key={index}>
+									<Link href={item.href}
+										className="bg-gray-200/10 p-2.5 xl:p-3 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer text-gray-100"
+										target="_blank"
+									>
+										<span className="sr-only">{item.name}</span>
+										<item.icon className="h-6 w-6 xl:w-8 xl:h-8" aria-hidden="true" />
+									</Link>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="flex justify-center flex-col flex-1 py-10 max-w-4xl ">
+						<h3 className="text-2xl font-display  text-transparent duration-1000 text-edge-outline cursor-default sm:text-3xl xl:text-4xl font-semibold text-ellipsis bg-clip-text mb-2 ">
+							Sobre Mim
+						</h3>
+						<h2 className="text-3xl font-display font-bold cursor-default sm:text-4xl md:text-5xl mb-2 text-gray-200 ">
+							Transformando Códigos em Experiências Inovadoras
+						</h2>
+						<p className="text-sm xl:text-base  text-gray-300/70 ">
+							Há mais de dois anos, iniciei minha jornada na programação e desde então, a paixão por desenvolvimento só cresceu. Sou um profissional dedicado, especializado como desenvolvedor full-stack e webdesign. Com um ano de experiência, já desenvolvi uma variedade de projetos, desde sites institucionais e Landing Pages até sistemas empresariais complexos.
+							<br />
+							<br />
+							Minha missão é otimizar a experiência do usuário em cada aplicativo, sempre buscando a máxima qualidade e inovação. Estou pronto para contribuir, criar e inovar no mundo digital.
+						</p>
+
+					</div>
+				</div >
+			</section >
 
 			<section id="contato" aria-label="contato" className="flex max-w-7xl flex-col items-center justify-center w-full mt-10">
 				<Card className=" w-full rounded-3xl ">

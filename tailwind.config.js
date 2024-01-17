@@ -119,7 +119,6 @@ module.exports = {
             opacity: "100%",
           },
         },
-
         title: {
           "0%": {
             opacity: "0",
@@ -133,6 +132,9 @@ module.exports = {
           "100%": {
             opacity: "100%",
           },
+        },
+        maxWidth: {
+          "7xl": "85rem",
         },
       },
     },
