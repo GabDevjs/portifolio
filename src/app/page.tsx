@@ -182,7 +182,7 @@ export default function Home() {
 				</div >
 			</section >
 
-			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pb-20 xl:py-20">
+			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pb-10 xl:py-20">
 				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Portfólio
