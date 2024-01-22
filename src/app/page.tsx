@@ -92,7 +92,7 @@ export default function Home() {
 				</h1>
 				<div className=" w-screen h-px animate-glow block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
 				<div className="z-10 animate-title w-full">
-					<h1 className="text-[2.3rem] text-white cursor-default font-bold lg:leading-10 sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
+					<h1 className="text-[21rem] text-white cursor-default font-bold lg:leading-10 sm:text-6xl xl:text-7xl 2xl:text-8xl 2xl:whitespace-nowrap text-center my-2 xl:my-4">
 						Seu Espaço para  Inovação <br className="hidden 2xl:block" /> Digital
 					</h1>
 				</div>
