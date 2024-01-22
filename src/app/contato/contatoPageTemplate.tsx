@@ -3,7 +3,7 @@ import Particles from "../components/particles";
 import { useEffect, useState } from "react";
 import { Particles3d } from "../components/particles3d";
 import { Navigation } from "../components/nav";
-import { Footer } from "../components/footer";
+import { Footer, navigation } from "../components/footer";
 import axios from "axios";
 import { createErrorToast } from "@/util/ToatsNotification";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,10 @@ import { useForm } from "react-hook-form";
 import { Card } from "../components/card";
 import { PatternFormat } from "react-number-format";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import Link from "next/link";
 
 export const ContatoPageTemplate = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -183,6 +187,73 @@ export const ContatoPageTemplate = () => {
           </form>
         </Card>
       </section >
+
+      <section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
+        <div className="flex justify-between items-center flex-col w-full max-w-7xl">
+          <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
+            {!isMobile ? (
+              navigation.social.map((item, index) => (
+                <Card className="w-full  h-[50vh]">
+                  <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
+                    <Link href={item.href}
+                      className="text-gray-200
+                    group-hover:text-primary-orange text-center flex flex-col items-center justify-center gap-4"
+                      target="_blank"
+                    >
+
+                      <item.icon className="text-xl md:text-3xl lg:text-5xl xl:text-7xl" aria-hidden="true" />
+                      <span className=" text-xl ">{item.name}</span>
+                    </Link>
+                  </div>
+                </Card>
+              ))) : (
+              <Swiper
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 30
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                  }
+                }}
+                pagination={{
+                  clickable: true
+                }}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false
+                }}
+                modules={[Pagination, Autoplay]}
+                className="mySwiper flex justify-center items-center h-full"
+              >
+                {navigation.social.map((item, index) => (
+                  <SwiperSlide key={index} className="w-full flex justify-center items-center">
+                    <Card className="w-full  h-[50vh]">
+                      <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
+                        <Link href={item.href}
+                          className="text-gray-200
+                    group-hover:text-primary-orange"
+                          target="_blank"
+                        >
+                          <span className="sr-only">{item.name}</span>
+                          <item.icon className="h-7 w-7" aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </Card>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            )}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

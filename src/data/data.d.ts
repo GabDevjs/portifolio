@@ -1,3 +1,5 @@
+import { IconType } from "react-icons/lib";
+
 export type ProjectsImgsType = {
   src: StaticImageData | string;
   alt: string;
@@ -20,4 +22,9 @@ export interface IProject {
 export interface IServices {
   title: string;
   description: string;
+}
+
+export interface SkillsType {
+  tec: string;
+  icon: IconType;
 }

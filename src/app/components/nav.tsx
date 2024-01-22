@@ -21,7 +21,7 @@ const ItemsNavbarOptions = [
 		href: "/sobre",
 	},
 	{
-		name: "Projetos",
+		name: "Portfólio",
 		icon: AiOutlineFundProjectionScreen,
 		href: "/projetos",
 	},

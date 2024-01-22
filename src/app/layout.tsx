@@ -8,6 +8,7 @@ import Script from "next/script";
 import { Suspense } from "react";
 import GtmAnalytics from "./components/analytics";
 import { Analytics } from '@vercel/analytics/react';
+import { LazyMotion, domAnimation } from "framer-motion";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
@@ -69,8 +70,9 @@ export default function RootLayout({
 				className={` ${process.env.NODE_ENV === "development" ? "debug-screens" : undefined
 					}`}
 			>
-				<Analytics />
+
 				{children}
+				<Analytics />
 			</body>
 		</html >
 	);

@@ -5,7 +5,7 @@ import { Navigation } from "./components/nav";
 import { Footer, navigation } from "./components/footer";
 import { Card } from "./components/card";
 import Image from "next/image";
-import { BsArrowDown, BsRocketTakeoffFill, BsWhatsapp } from "react-icons/bs";
+import { BsArrowDown, BsGithub, BsLinkedin, BsRocketTakeoffFill, BsWhatsapp } from "react-icons/bs";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Particles3d } from "./components/particles3d";
@@ -22,6 +22,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Services } from "@/data/services";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { FaPaperPlane } from "react-icons/fa6";
+import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>
@@ -40,6 +42,10 @@ export default function Home() {
 		reset();
 		setValue("name", "");
 		setValue("email", "");
+	}
+
+	function classNames(...classes: string[]) {
+		return classes.filter(Boolean).join(' ')
 	}
 
 	const handleSubmitContact = async (data: any) => {
@@ -146,7 +152,16 @@ export default function Home() {
 							<br />
 							Minha missão é otimizar a experiência do usuário em cada aplicativo, sempre buscando a máxima qualidade e inovação. Estou pronto para contribuir, criar e inovar no mundo digital.
 						</p>
-						<div className="flex items-center flex-wrap w-full gap-6 pt-5 ">
+
+						<div className="flex items-center flex-wrap w-full gap-6 pt-5 md:pt-10 lg:pt-16 ">
+							<Link href="/orcamento"
+								className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+							>
+								Saiba mais
+							</Link>
+							<span className="text-gray-100/60">
+								•
+							</span>
 							{navigation.social.map((item, index) => (
 								<div key={index}>
 									<Link href={item.href}
@@ -163,9 +178,103 @@ export default function Home() {
 				</div >
 			</section >
 
-			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
+			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pt-10 xl:py-32 mb-12">
 				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
+						Portfólio
+					</h2>
+
+					<div className="my-16 md:my-20 xl:my-32 space-y-10 md:space-y-16 lg:space-y-32 xl:space-y-[30vh] w-full">
+						{Projects.slice(0, 3).map((feature, featureIdx) => (
+							<div
+								key={feature.title}
+								className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8 group"
+							>
+								<div
+									className={classNames(
+										featureIdx % 2 === 0 ? 'lg:col-start-1' : 'lg:col-start-8 xl:col-start-9',
+										'mt-6 lg:col-span-6 lg:row-start-1 lg:mt-0 xl:col-span-4'
+									)}
+								>
+									<h3 className="text-xl xl:text-3xl font-semibold text-gray-100">{feature.title}</h3>
+									<div className="flex items-center my-3 mb-4 gap-2 flex-wrap lg:flex-row">
+										<span className="inline-flex items-center justify-center px-3 py-1 text-sm font-bold leading-none text-gray-100 bg-gray-200/10 rounded-full border border-gray-100/20">
+											{feature.year.toString()}
+										</span>
+										<span className="text-gray-100/60">
+											•
+										</span>
+										{feature.tags.length > 0 && feature.tags.map((tag, index) => (
+											<span key={index} className="inline-flex items-center justify-center px-3 py-1 text-sm font-bold leading-none text-gray-100 bg-gray-200/10 rounded-full border border-gray-100/20">
+												{tag}
+											</span>
+										))}
+									</div>
+									<p className="mt-2 text-sm lg:text-base text-gray-300">{feature.description}</p>
+									<div className="flex mt-10 items-center flex-wrap gap-3 px-1 text-sm">
+										<Link href={feature.link}
+											className="relative py-1.5 px-6 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0 whitespace-nowrap "
+											target="_blank"
+										>
+											<FaPaperPlane className="h-4 w-4" aria-hidden="true" />
+											<span>Ir para o site</span>
+										</Link>
+										{
+											feature.otherLinks && feature.otherLinks.length > 0 && feature.otherLinks.map((link, index) => (
+												<Link key={index} href={link.link}
+													className="relative w-10 h-10 text-black inline-flex gap-2 items-center justify-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0 whitespace-nowrap "
+													target="_blank"
+												>
+													{
+														link.name === "Github" ? (
+															<BsGithub className="h-5 w-5" aria-hidden="true" />
+														) : link.name === "Linkedin" ? (
+															<BsLinkedin className="h-5 w-5" aria-hidden="true" />
+														) : (
+															<FaPaperPlane className="h-5 w-5" aria-hidden="true" />
+														)
+													}
+												</Link>
+											))
+										}
+									</div>
+								</div>
+								<div
+									className={classNames(
+										featureIdx % 2 === 0 ? 'lg:col-start-6 xl:col-start-5' : 'lg:col-start-1',
+										'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
+									)}
+								>
+									<Link href={feature.mainImage}>
+										<div
+											className={classNames(
+												`aspect-h-2 aspect-w-5 rounded-lg bg-gray-100 relative `,
+											)}>
+											<div className="overflow-hidden aspect-h-2 aspect-w-5 rounded-lg ">
+												<Image src={feature.mainImage} alt={feature.title} className="object-cover object-center group-hover:scale-110 transition-transform duration-700" />
+											</div>
+
+											<Image quality={20} src={feature.mainImage} alt={feature.title} className="object-cover absolute -z-10 inset-0 blur-3xl opacity-40 rounded-3xl object-center group-hover:scale-105 transition-transform duration-700" />
+										</div>
+									</Link>
+								</div>
+							</div>
+						))}
+					</div>
+					<Card className="flex justify-center items-center  w-full max-w-7xl py-1" onClick={() => {
+						router.push("/projetos");
+					}} >
+						<h2 className="text-xl text-center inline-flex gap-2 items-center text-white cursor-default  2xl:whitespace-nowrap xl:text-2xl font-bold ">
+							Ver mais projetos
+							<AiOutlineFundProjectionScreen />
+						</h2>
+					</Card>
+				</div>
+			</section>
+
+			<section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
+				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
+					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold  ">
 						Serviços
 					</h2>
 					<div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
@@ -227,33 +336,46 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pt-10 xl:pt-20 mb-12">
-				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
-					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
-						Projetos
-					</h2>
-					<div className="grid lg:grid-cols-2 gap-y-10 gap-x-5 pt-10 pb-6">
-						{viewMore ?
-							Projects.map((item: IProject, index) => (
-								<ProjectCard item={item} key={index} />
-							)) :
-							Projects.slice(0, 4).map((item: IProject, index) => (
-								<ProjectCard item={item} key={index} />
-							))
-						}
-					</div>
-					{Projects.length >= 4 && (
-						<Card className="flex justify-center items-center  w-full max-w-7xl py-1" onClick={() => {
-							setViewMore(!viewMore)
-						}} >
-							<h2 className="text-xl text-center inline-flex gap-2 items-center text-white cursor-default  2xl:whitespace-nowrap xl:text-2xl font-bold ">
-								Ver {viewMore ? "menos" : "mais"}
-								<BsArrowDown className={`inline text-white h-5 w-5 ${viewMore && "rotate-180"} transition-transform duration-300`} />
+			<section id="CTA-orcamentos" aria-label="sobre" className="flex items-center justify-center w-full ">
+				<div className="flex justify-center items-center w-full max-w-7xl py-5 md:py-8 xl:py-10">
+					<Card className="w-full rounded-3xl relative">
+						<svg
+							className="absolute inset-0  -z-10 h-full w-full stroke-gray-200/20 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+							aria-hidden="true"
+						>
+							<defs>
+								<pattern
+									id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84"
+									width={180}
+									height={180}
+									x="50%"
+									y={-1}
+									patternUnits="userSpaceOnUse"
+								>
+									<path d="M.5 200V.5H200" fill="none" />
+								</pattern>
+							</defs>
+
+							<rect width="100%" height="100%" strokeWidth={0} fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)" />
+						</svg>
+						<div className="py-20 md:py-28 xl:py-36 px-2 md:px-5 flex flex-col gap-10 w-full">
+							<h2 className="text-3xl md:text-5xl xl:text-6xl font-semibold text-gray-100 text-center">
+								Vamos criar algo incrível juntos?
 							</h2>
-						</Card>
-					)}
+							<div className="flex justify-center items-center flex-col gap-4 pt-5">
+								<Link href="/contato">
+									<button
+										type="button"
+										className="relative  py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+									>
+										<span>Começar agora!</span>
+									</button>
+								</Link>
+							</div>
+						</div>
+					</Card>
 				</div>
-			</section>
+			</section >
 
 			<section id="contato" aria-label="contato" className="flex max-w-7xl flex-col items-center justify-center w-full mt-10">
 				<Card className=" w-full rounded-3xl ">
@@ -302,7 +424,7 @@ export default function Home() {
 								/>
 							</div>
 						</div>
-						<div className="py-3  col-span-2 flex justify-end px-4 md:px-[10vw]">
+						<div className="py-3  col-span-2 flex justify-start px-4 ">
 							<button
 								type="submit"
 								className="w-32 h-32 relative border border-gray-200 py-2 px-8 text-white inline-flex gap-2 items-center font-bold uppercase rounded-full overflow-hidden bg-transparent transition-all duration-400 ease-in-out shadow-md hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-full hover:before:left-0  justify-center"
