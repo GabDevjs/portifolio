@@ -181,7 +181,7 @@ export const SobrePageTemplate = () => {
             <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl 2xl:whitespace-nowrap xl:text-5xl text-ellipsis bg-clip-text mb-2 font-bold ">
               Tecnologias e ferramentas
             </h2>
-            <div className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pt-5 ">
+            <div className="grid w-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-5 ">
               {!isMobile ? (
                 skils.map((item, index) => (
                   <Card key={index} className="w-full  h-[50vh]">
@@ -190,7 +190,6 @@ export const SobrePageTemplate = () => {
                         className="text-gray-200
                     group-hover:text-primary-orange text-center flex flex-col items-center justify-center gap-4"
                       >
-
                         <item.icon className="text-xl md:text-3xl lg:text-5xl xl:text-7xl" aria-hidden="true" />
                         <span className=" text-xl ">{item.tec}</span>
                       </div>
@@ -220,7 +219,7 @@ export const SobrePageTemplate = () => {
                     disableOnInteraction: false
                   }}
                   modules={[Pagination, Autoplay]}
-                  className="mySwiper flex justify-center items-center h-full"
+                  className="mySwiper flex w-full justify-center items-center h-full"
                 >
                   {skils.map((item, index) => (
                     <SwiperSlide key={index} className="w-full flex justify-center items-center">
