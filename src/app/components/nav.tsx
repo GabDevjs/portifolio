@@ -80,9 +80,9 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 			</header>
 
 			{open && (
-				<div className="fixed inset-0 z-20 bg-neutral-900 animate-fade-card-in pt-20 p-4 overflow-hidden">
+				<div className="fixed inset-0 z-20 bg-neutral-900 pt-20 p-4 overflow-hidden">
 					<Card className="flex flex-col items-center h-full px-4">
-						<div className="flex flex-col items-center justify-center h-[70%] w-full" onClick={() => {
+						<div className="flex flex-col items-center justify-center h-[70%] w-full text-base" onClick={() => {
 							setOpen(!open);
 						}}>
 							<NavItems items={ItemsNavbarOptions} isMobile />
@@ -91,14 +91,14 @@ export const Navigation: React.FC<{ home?: boolean }> = ({ home }) => {
 						<div className="flex justify-center h-[29%] items-center gap-6 flex-wrap py-4">
 							{navigation.social.map((item, index) => (
 								<div key={index}>
-									<div className="bg-gray-200/10 p-4 hover:scale-125 rounded-full group  flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer">
+									<div className="bg-gray-200/10 p-3 text-xl hover:scale-125 rounded-full group  flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer">
 										<Link href={item.href}
 											className="text-gray-200
                     group-hover:text-primary-orange"
 											target="_blank"
 										>
 											<span className="sr-only">{item.name}</span>
-											<item.icon className="h-7 w-7" aria-hidden="true" />
+											<item.icon aria-hidden="true" />
 										</Link>
 									</div>
 								</div>

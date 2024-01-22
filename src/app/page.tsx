@@ -32,7 +32,7 @@ const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => 
 export default function Home() {
 	const { register, handleSubmit, setValue, reset } = useForm();
 	const [isMobile, setIsMobile] = useState(false);
-	const [viewMore, setViewMore] = useState(false);
+
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -153,42 +153,45 @@ export default function Home() {
 							Minha missão é otimizar a experiência do usuário em cada aplicativo, sempre buscando a máxima qualidade e inovação. Estou pronto para contribuir, criar e inovar no mundo digital.
 						</p>
 
-						<div className="flex items-center flex-wrap w-full gap-6 pt-5 md:pt-10 lg:pt-16 ">
-							<Link href="/orcamento"
-								className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
-							>
-								Saiba mais
-							</Link>
-							<span className="text-gray-100/60">
-								•
-							</span>
-							{navigation.social.map((item, index) => (
-								<div key={index}>
-									<Link href={item.href}
-										className="bg-gray-200/10 p-2.5 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer text-gray-100"
-										target="_blank"
-									>
-										<span className="sr-only">{item.name}</span>
-										<item.icon className="h-6 w-6" aria-hidden="true" />
-									</Link>
-								</div>
-							))}
+						<div className="flex lg:items-center flex-col lg:flex-row w-full gap-6 pt-5 md:pt-10 lg:pt-16 ">
+							<div className="flex gap-6">
+								<Link href="/sobre"
+									className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+								>
+									Saiba mais
+								</Link>
+								<span className="text-gray-100/60">
+									•
+								</span>
+							</div>
+							<div className="flex flex-wrap gap-6">
+								{navigation.social.map((item, index) => (
+									<div key={index}>
+										<Link href={item.href}
+											className="bg-gray-200/10 p-2.5 hover:scale-125 rounded-full group shadow-xl flex justify-center flex-col border-2 border-gray-500 border-opacity-40 transition-all duration-300 cursor-pointer text-gray-100"
+											target="_blank"
+										>
+											<span className="sr-only">{item.name}</span>
+											<item.icon className="h-6 w-6" aria-hidden="true" />
+										</Link>
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div >
 			</section >
 
-			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pt-10 xl:py-32 mb-12">
+			<section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pb-10 xl:py-20">
 				<div className="flex justify-between items-center flex-col w-full max-w-7xl">
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
 						Portfólio
 					</h2>
-
-					<div className="my-16 md:my-20 xl:my-32 space-y-10 md:space-y-16 lg:space-y-32 xl:space-y-[30vh] w-full">
+					<div className="my-5 md:my-16 xl:my-28 space-y-20 md:space-y-28 lg:space-y-32 xl:space-y-[30vh] w-full">
 						{Projects.slice(0, 3).map((feature, featureIdx) => (
 							<div
 								key={feature.title}
-								className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8 group"
+								className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8 group duration-700 border lg:border-none rounded-xl bg-zinc-800/40 lg:bg-transparent  hover:bg-zinc-800/10 group md:gap-8  hover:border-zinc-700/50 border-zinc-600 p-2 pb-6 gap-4"
 							>
 								<div
 									className={classNames(
@@ -245,12 +248,12 @@ export default function Home() {
 										'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
 									)}
 								>
-									<Link href={feature.mainImage}>
+									<Link href={feature.link} target="_blank">
 										<div
 											className={classNames(
-												`aspect-h-2 aspect-w-5 rounded-lg bg-gray-100 relative `,
+												`aspect-h-1 aspect-w-5 rounded-lg bg-gray-100 relative `,
 											)}>
-											<div className="overflow-hidden aspect-h-2 aspect-w-5 rounded-lg ">
+											<div className="overflow-hidden aspect-h-1 aspect-w-5 rounded-lg ">
 												<Image src={feature.mainImage} alt={feature.title} className="object-cover object-center group-hover:scale-110 transition-transform duration-700" />
 											</div>
 
@@ -261,14 +264,11 @@ export default function Home() {
 							</div>
 						))}
 					</div>
-					<Card className="flex justify-center items-center  w-full max-w-7xl py-1" onClick={() => {
-						router.push("/projetos");
-					}} >
-						<h2 className="text-xl text-center inline-flex gap-2 items-center text-white cursor-default  2xl:whitespace-nowrap xl:text-2xl font-bold ">
-							Ver mais projetos
-							<AiOutlineFundProjectionScreen />
-						</h2>
-					</Card>
+					<Link href="/projetos"
+						className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+					>
+						Ver mais projetos <BsArrowDown className="h-5 w-5 -rotate-90" />
+					</Link>
 				</div>
 			</section>
 

@@ -15,11 +15,13 @@ import { skils } from "@/data/skils";
 interface ParallaxProps {
   baseVelocity: number;
   className?: string;
+  reverse?: boolean;
 }
 
 export const ParallaxText = ({
   baseVelocity = 100,
   className,
+  reverse = false,
 }: ParallaxProps) => {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
@@ -51,16 +53,32 @@ export const ParallaxText = ({
 
   return (
     <div className={`parallax py-2 ${className || ""}`}>
-      <m.div className="scroller" style={{ x }}>
-        {Object.values(skils)
-          .map((item, index) => (
-            <span
-              key={index}
-            >
-              <item.icon />
-            </span>
-          ))}
-      </m.div>
+      {
+        reverse ? (
+          <m.div className="scroller" style={{ x }}>
+            {Object.values(skils)
+              .map((item, index) => (
+                <span
+                  key={index}
+                >
+                  <item.icon />
+                </span>
+              ))}
+          </m.div>
+        ) : (
+          <m.div className="scroller" style={{ x }}>
+            {Object.values(skils)
+              .reverse()
+              .map((item, index) => (
+                <span
+                  key={index}
+                >
+                  <item.icon />
+                </span>
+              ))}
+          </m.div>
+        )
+      }
     </div>
   );
 };

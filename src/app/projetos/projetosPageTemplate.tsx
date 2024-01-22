@@ -25,6 +25,7 @@ function classNames(...classes: string[]) {
 export const ProjetosPageTemplate = () => {
 
   const { register, handleSubmit, setValue, reset } = useForm();
+  const [isMobile, setIsMobile] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -61,23 +62,25 @@ export const ProjetosPageTemplate = () => {
   };
 
 
+  useEffect(() => {
+    if (window.innerWidth < 1280) {
+      setIsMobile(true);
+    }
+  }, []);
   return (
     <div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
     >
-
       <Navigation />
-
-
       <section id="projetos" aria-label="projetos" className="flex flex-col items-center w-full justify-center pt-20 my-12">
         <div className="flex justify-between items-center flex-col w-full max-w-7xl">
           <h2 className="text-4xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-5xl 2xl:whitespace-nowrap xl:text-6xl text-ellipsis bg-clip-text mb-2 font-bold ">
-            Projetos
+            Portfólio - Projetos
           </h2>
-          < div className="flex mt-10 justify-between items-center flex-col w-full max-w-7xl">
-            {Projects.slice(0, 1).map((feature, featureIdx) => (
+          <div className="flex mt-10 justify-between items-center flex-col w-full max-w-7xl">
+            {!isMobile ? Projects.slice(0, 1).map((feature, featureIdx) => (
               <Card
                 key={feature.title}
-                className="flex w-full flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8 group pt-8 px-2 md:px-5"
+                className="flex w-full flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8 group p-2 md:px-5"
               >
                 <div
                   className={classNames(
@@ -134,17 +137,26 @@ export const ProjetosPageTemplate = () => {
                     'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
                   )}
                 >
-                  <div className={classNames(
-                    `aspect-h-2 aspect-w-5  overflow-hidden rounded-lg bg-gray-100 `,
-                  )}>
-                    <Image src={feature.mainImage} alt={feature.title} className="object-cover object-center group-hover:scale-110 transition-transform duration-700" />
-                  </div>
+                  <Link href={feature.mainImage}>
+                    <div
+                      className={classNames(
+                        `aspect-h-1 aspect-w-5 rounded-lg bg-gray-100 relative `,
+                      )}>
+                      <div className="overflow-hidden aspect-h-1 aspect-w-5 rounded-lg ">
+                        <Image src={feature.mainImage} alt={feature.title} className="object-cover object-center group-hover:scale-110 transition-transform duration-700" />
+                      </div>
+
+                      <Image quality={20} src={feature.mainImage} alt={feature.title} className="object-cover absolute -z-10 inset-0 blur-3xl opacity-40 rounded-3xl object-center group-hover:scale-105 transition-transform duration-700" />
+                    </div>
+                  </Link>
                 </div>
               </Card>
-            ))}
+            )) : null}
           </div>
           <div className="grid lg:grid-cols-2  gap-y-10 gap-x-5 pt-10 pb-6">
-            {Projects.slice(1,).map((item: IProject, index) => (
+            {isMobile ? Projects.map((item: IProject, index) => (
+              <ProjectCard item={item} key={index} />
+            )) : Projects.slice(1,).map((item: IProject, index) => (
               <ProjectCard item={item} key={index} />
             ))}
           </div>

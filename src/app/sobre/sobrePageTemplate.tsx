@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Navigation } from "../components/nav";
-import { Footer, navigation } from "../components/footer";
+import { Footer, } from "../components/footer";
 import { Services } from "@/data/services";
 import { Card } from "../components/card";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +15,12 @@ import { createErrorToast } from "@/util/ToatsNotification";
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ParallaxText } from "../components/paralaxText";
+import { BsDownload, BsLinkedin, BsWhatsapp } from "react-icons/bs";
+import { experiencias } from "@/data/experiencias";
+import { skils } from "@/data/skils";
+
+
+const cv = "/Flavio_Gabriel_Curriculo.pdf";
 
 export const SobrePageTemplate = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -60,10 +66,8 @@ export const SobrePageTemplate = () => {
     <div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
     >
       <Navigation />
-
-
-      <section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
-        <div className="flex justify-between items-center h-full flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
+      <section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full mt-10 lg:mt-5">
+        <div className="flex justify-between items-center gap-y-5 h-full flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
           <div className="flex justify-center lg:justify-between h-full md:h-[26rem] xl:h-[80vh] flex-col flex-1 max-w-4xl ">
             <div>
               <h2 className="text-3xl font-display font-bold cursor-default sm:text-4xl md:text-5xl mb-2 text-gray-200 ">
@@ -76,8 +80,27 @@ export const SobrePageTemplate = () => {
                 Minha missão é otimizar a experiência do usuário em cada aplicativo, sempre buscando a máxima qualidade e inovação. Estou pronto para contribuir, criar e inovar no mundo digital.
               </p>
             </div>
-            <div className="flex items-center flex-wrap w-full gap-6 pt-5  overflow-x-hidden relative h-20">
-              <ParallaxText baseVelocity={1} className="w-full text-gray-100 " />
+            <div className="flex  items-center flex-wrap pt-6	xl:mb-10 gap-2 gap-y-5 md:gap-6 w-full text-sm ">
+              <Link href={cv}
+                className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+                target="_blank"
+
+              >
+                <BsDownload className="h-5 w-5" />
+                Download Curriculo (PDF)
+              </Link>
+
+              <Link
+                href="https://api.whatsapp.com/send?phone=5511981154749&text=Ol%C3%A1!%20%F0%9F%91%8B%20Estou%20interessado(a)%20nos%20seus%20servi%C3%A7os.%20Pode%20me%20dar%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20projetos%20que%20voc%C3%AA%20realiza?%20Obrigado!"
+                target="_blank"
+                className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-green-500 before:to-green-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+              >
+                <BsWhatsapp className="h-5 w-5" />
+                Entre em contato
+              </Link>
+            </div>
+            <div className="flex items-center mt-2 lg:mt-0 flex-wrap w-full gap-6 pt-5  overflow-hidden relative h-20">
+              <ParallaxText reverse baseVelocity={1} className="w-full text-gray-100 " />
             </div>
           </div>
           <div className="flex w-full justify-center flex-1 items-center  ">
@@ -93,10 +116,138 @@ export const SobrePageTemplate = () => {
         </div >
       </section >
 
+      <section id="experiencia" aria-label="experiencia" className="flex items-center justify-center w-full mt-10 xl:pt-20 pb-20">
+        <div className="flex justify-between items-center flex-col w-full max-w-7xl">
+          <div className="flex justify-between items-center flex-col w-full max-w-7xl ">
+            <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl 2xl:whitespace-nowrap xl:text-5xl text-ellipsis bg-clip-text mb-2 font-bold ">
+              Minha jornada ate aqui
+            </h2>
+            <div className="pl-6 md:pl-10 lg:pl-0" >
+              <ol className="relative  border-s mt-10 xl:mt-20 border-gray-600  max-w-4xl">
+                {
+                  experiencias.map((item, index) => (
+                    <li key={index} className="mb-20 ms-5 lg:ms-14 lg:flex-row group flex flex-col gap-10">
+                      <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 opacity-40 group-hover:opacity-100 transition-opacity ">
+                        <svg className="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                        </svg>
+                      </span>
+                      <div className="">
+                        <Image src={item.logo} alt={item.title} width={100} height={100} className="rounded-full" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="mb-1 text-xl md:text-2xl  xl:text-3xl font-semibold text-gray-100 ">{item.title}</h3>
+                        <h3 className="mb-2 text-lg md:text-xl  font-medium text-gray-300 ">{item.subtitle}</h3>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{item.dateInit}</span>
+                          <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">•</span>
+                          {
+                            !item.atual ? (
+                              <>
+                                <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{item.dateEnd}</span>
+                                <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">-</span>
+                                <span className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{item.totalTime}</span>
+                              </>
+                            ) : (
+                              <span className="block mb-2 text-sm font-normal leading-none bg-blue-500 px-4 py-0.5 rounded-2xl text-blue-950">
+                                Atualmente
+                              </span>
+                            )
+                          }
+                        </div>
+                        <p className="text-base font-normal text-gray-500 dark:text-gray-400">{item.description}</p>
+                        <div className="flex items-center flex-wrap pt-6	xl:mb-10 gap-2 gap-y-5 md:gap-6 w-full text-sm animate-fade-in">
+                          <Link href={item.linkedin}
+                            className="relative py-2 px-8 text-black inline-flex gap-2 items-center font-bold uppercase rounded-[50px] overflow-hidden bg-white transition-all duration-400 ease-in-out shadow-md hover:scale-105 hover:text-white hover:shadow-lg active:scale-90 before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-blue-500 before:to-blue-300 before:transition-all before:duration-500 before:ease-in-out before:z-[-1] before:rounded-[50px] hover:before:left-0"
+                            target="_blank"
+                          >
+                            <BsLinkedin className="h-5 w-5" />
+                            Linkedin
+                          </Link>
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" aria-label="experiencia" className="flex items-center justify-center w-full mt-10 xl:pt-20 pb-20">
+        <div className="flex justify-between items-center flex-col w-full max-w-7xl">
+          <div className="flex justify-between items-center flex-col w-full max-w-7xl ">
+            <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl 2xl:whitespace-nowrap xl:text-5xl text-ellipsis bg-clip-text mb-2 font-bold ">
+              Tecnologias e ferramentas
+            </h2>
+            <div className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pt-5 ">
+              {!isMobile ? (
+                skils.map((item, index) => (
+                  <Card key={index} className="w-full  h-[50vh]">
+                    <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
+                      <div
+                        className="text-gray-200
+                    group-hover:text-primary-orange text-center flex flex-col items-center justify-center gap-4"
+                      >
+
+                        <item.icon className="text-xl md:text-3xl lg:text-5xl xl:text-7xl" aria-hidden="true" />
+                        <span className=" text-xl ">{item.tec}</span>
+                      </div>
+                    </div>
+                  </Card>
+                ))) : (
+                <Swiper
+                  breakpoints={{
+                    640: {
+                      slidesPerView: 1,
+                      spaceBetween: 30
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      spaceBetween: 30
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 30
+                    }
+                  }}
+                  pagination={{
+                    clickable: true
+                  }}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false
+                  }}
+                  modules={[Pagination, Autoplay]}
+                  className="mySwiper flex justify-center items-center h-full"
+                >
+                  {skils.map((item, index) => (
+                    <SwiperSlide key={index} className="w-full flex justify-center items-center">
+                      <Card className="w-full  h-[50vh]">
+                        <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
+                          <div
+                            className="text-gray-200
+                    group-hover:text-primary-orange text-center flex flex-col items-center justify-center gap-4"
+                          >
+                            <item.icon className="text-5xl xl:text-7xl" aria-hidden="true" />
+                            <span className=" text-xl ">{item.tec}</span>
+                          </div>
+                        </div>
+                      </Card>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
         <div className="flex justify-between items-center flex-col w-full max-w-7xl">
-          <h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold ">
-            Serviços
+          <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-5xl 2xl:whitespace-nowrap xl:text-6xl text-ellipsis bg-clip-text mb-2 font-bold ">
+            Serviços como freelancer
           </h2>
           <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
             {!isMobile ? (

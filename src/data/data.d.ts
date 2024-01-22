@@ -28,3 +28,15 @@ export interface SkillsType {
   tec: string;
   icon: IconType;
 }
+
+export interface IExperiencia {
+  title: string;
+  description: string;
+  subtitle: string;
+  linkedin: string;
+  dateInit: string;
+  dateEnd: string;
+  totalTime: string;
+  atual: boolean;
+  logo: StaticImageData | string;
+}

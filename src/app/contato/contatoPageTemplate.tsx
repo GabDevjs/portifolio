@@ -188,12 +188,12 @@ export const ContatoPageTemplate = () => {
         </Card>
       </section >
 
-      <section aria-label="Serviços" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
+      <section aria-label="midias-socias" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
         <div className="flex justify-between items-center flex-col w-full max-w-7xl">
           <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
             {!isMobile ? (
               navigation.social.map((item, index) => (
-                <Card className="w-full  h-[50vh]">
+                <Card key={index} className="w-full  h-[50vh]">
                   <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
                     <Link href={item.href}
                       className="text-gray-200
@@ -238,11 +238,11 @@ export const ContatoPageTemplate = () => {
                       <div className="py-20 px-4 flex flex-col h-full justify-center gap-4">
                         <Link href={item.href}
                           className="text-gray-200
-                    group-hover:text-primary-orange"
+                    group-hover:text-primary-orange text-center flex flex-col items-center justify-center gap-4"
                           target="_blank"
                         >
-                          <span className="sr-only">{item.name}</span>
-                          <item.icon className="h-7 w-7" aria-hidden="true" />
+                          <item.icon className="text-5xl xl:text-7xl" aria-hidden="true" />
+                          <span className=" text-xl ">{item.name}</span>
                         </Link>
                       </div>
                     </Card>
