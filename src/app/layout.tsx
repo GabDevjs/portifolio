@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 	icons: {
 		shortcut: "/logo.png",
 	},
+	themeColor: "#0a0a0a",
 	openGraph: {
 		type: "website",
 		locale: "pt_BR",
