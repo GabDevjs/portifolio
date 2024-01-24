@@ -181,7 +181,7 @@ export const SobrePageTemplate = () => {
             <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-4xl 2xl:whitespace-nowrap xl:text-5xl text-ellipsis bg-clip-text mb-2 font-bold ">
               Tecnologias e ferramentas
             </h2>
-            <div className="grid w-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-5 ">
+            <div className="grid w-full  lg:grid-cols-3 xl:grid-cols-4 gap-5 pt-5 ">
               {!isMobile ? (
                 skils.map((item, index) => (
                   <Card key={index} className="w-full  h-[50vh]">
@@ -248,7 +248,7 @@ export const SobrePageTemplate = () => {
           <h2 className="text-3xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-5xl 2xl:whitespace-nowrap xl:text-6xl text-ellipsis bg-clip-text mb-2 font-bold ">
             Serviços como freelancer
           </h2>
-          <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
+          <div className="w-full grid  xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
             {!isMobile ? (
               Services.map((item, index) => (
                 <Card className="" key={index}>

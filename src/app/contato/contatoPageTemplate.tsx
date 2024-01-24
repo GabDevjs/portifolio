@@ -190,7 +190,7 @@ export const ContatoPageTemplate = () => {
 
       <section aria-label="midias-socias" className="flex flex-col items-center w-full justify-center xl:pt-20 pb-20">
         <div className="flex justify-between items-center flex-col w-full max-w-7xl">
-          <div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
+          <div className="w-full grid  xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
             {!isMobile ? (
               navigation.social.map((item, index) => (
                 <Card key={index} className="w-full  h-[50vh]">

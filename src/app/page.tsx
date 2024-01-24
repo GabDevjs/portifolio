@@ -287,7 +287,7 @@ export default function Home() {
 					<h2 className="text-5xl font-display text-center text-transparent text-edge-outline cursor-default sm:text-6xl 2xl:whitespace-nowrap xl:text-8xl text-ellipsis bg-clip-text mb-2 font-bold  ">
 						Serviços
 					</h2>
-					<div className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
+					<div className="w-full grid  xl:grid-cols-3 gap-x-6 gap-y-16 pt-5 xl:pt-10">
 						{!isMobile ? (
 							Services.map((item, index) => (
 								<Card className="" key={index}>
