@@ -17,7 +17,9 @@ export const Atmosphere = ({ lightDirection, verteces }: AtmosphereProps) => {
         transparent
         uniforms={{
           lightDirection: { value: lightDirection.clone() },
+
         }}
+
       />
     </mesh>
   );

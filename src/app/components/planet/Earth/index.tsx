@@ -32,6 +32,7 @@ export const Earth = () => {
           lightDirection: { value: initialRotation.clone() },
         }}
       />
+      <Atmosphere verteces={41} lightDirection={initialRotation} />
     </Sphere>
   );
 };

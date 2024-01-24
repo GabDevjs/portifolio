@@ -76,7 +76,7 @@ export default function Home() {
 	return (
 		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
 		>
-			<div className="absolute h-screen inset-0 -z-10 animate-fade-in ">
+			<div className="absolute h-[200vh] inset-0 -z-10 animate-fade-in ">
 				{!isMobile ? (
 					<>
 						<Particles quantity={80} className="w-screen h-screen" />
@@ -124,7 +124,17 @@ export default function Home() {
 				</div>
 			</section>
 			<DynamicPlanet />
+			{!isMobile ? (
+				<>
+					<Particles quantity={80} className="w-screen absolute  inset-0" />
+				</>
+			) : null}
 			<div className="w-full hidden xl:block h-[70vh] ">
+				{!isMobile ? (
+					<>
+						<Particles quantity={80} className="w-screen absolute  inset-0" />
+					</>
+				) : null}
 			</div>
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
