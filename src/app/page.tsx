@@ -126,15 +126,10 @@ export default function Home() {
 			<DynamicPlanet />
 			{!isMobile ? (
 				<>
-					<Particles quantity={80} className="w-screen absolute  inset-0" />
+					<Particles quantity={80} className="w-screen absolute  inset-0 animate-fade-in" />
 				</>
 			) : null}
 			<div className="w-full hidden xl:block h-[70vh] ">
-				{!isMobile ? (
-					<>
-						<Particles quantity={80} className="w-screen absolute  inset-0" />
-					</>
-				) : null}
 			</div>
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">

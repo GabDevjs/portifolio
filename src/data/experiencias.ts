@@ -1,6 +1,5 @@
 import { Logo } from './../app/components/logo';
 import { IExperiencia } from "./data";
-import logoWorkana from "../../public/logo/workana_logo.jpeg";
 import logoMaisVoip from "../../public/logo/maisvoip_logo.jpeg";
 import logoSistemaVanguard from "../../public/logo/sistema_vanguard_logo.jpeg";
 
@@ -8,12 +7,12 @@ import logoSistemaVanguard from "../../public/logo/sistema_vanguard_logo.jpeg";
 export const experiencias: IExperiencia[] = [
   {
     title: "Desenvolvedor full stack",
-    subtitle: "Sistema Vanguard · Tempo integral",
+    subtitle: "Sistema Vanguard",
     description: "Trabalhando como desenvolvedor full-stack, venho contribuindo significativamente, construindo uma variedade de sistemas para otimizar processos tanto dentro do ecossistema interno da empresa quanto para nossos clientes privados de telefonia. Meu trabalho reflete não apenas habilidades técnicas, mas também um compromisso em impulsionar a eficiência e a inovação no ambiente de telecomunicações.",
     linkedin: "https://www.linkedin.com/company/sistema-vanguard/",
     dateInit: "dez de 2023",
-    dateEnd: "atual",
-    atual: true,
+    dateEnd: "fev de 2024",
+    atual: false,
     totalTime: "2 anos e 2 meses",
     logo: logoSistemaVanguard
   },

@@ -99,8 +99,8 @@ export const SobrePageTemplate = () => {
                 Entre em contato
               </Link>
             </div>
-            <div className="flex items-center mt-2 lg:mt-0 flex-wrap w-full gap-6 pt-5  overflow-hidden relative h-20">
-              <ParallaxText reverse baseVelocity={1} className="w-full text-gray-100 " />
+            <div className="flex items-center mt-2 lg:mt-0 flex-col w-full gap-6 pt-5  overflow-hidden relative h-20">
+              <ParallaxText reverse baseVelocity={1} className="w-full text-gray-100" />
             </div>
           </div>
           <div className="flex w-full justify-center flex-1 items-center  ">
