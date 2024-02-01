@@ -1,5 +1,5 @@
 "use client"
-import Astronauta from "/public/menino_lindo.jpeg";
+import Astronauta from "/public/menino_lindo.jpg";
 import React, { useEffect, useState } from "react";
 import { Navigation } from "./components/nav";
 import { Footer, navigation } from "./components/footer";
@@ -11,19 +11,15 @@ import dynamic from "next/dynamic";
 import { Particles3d } from "./components/particles3d";
 import Particles from "./components/particles";
 import { Projects } from "@/data/projects";
-import { IProject } from "@/data/data";
-import { ProjectCard } from "./components/projectCard";
 import { useForm } from "react-hook-form";
 import { createErrorToast } from "../util/ToatsNotification";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { PatternFormat } from "react-number-format"
 import ClipLoader from "react-spinners/ClipLoader";
 import { Services } from "@/data/services";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { FaPaperPlane } from "react-icons/fa6";
-import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 const DynamicPlanet = dynamic(() => import("./components/planet").then((mod) => mod.Planet), {
 	loading: () => <></>

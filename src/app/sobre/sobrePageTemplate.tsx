@@ -7,7 +7,7 @@ import { Card } from "../components/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Link from "next/link";
-import Astronauta from "/public/menino_lindo.jpeg";
+import Astronauta from "/public/menino_lindo.jpg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import axios from "axios";
