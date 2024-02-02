@@ -19,7 +19,6 @@ import { BsDownload, BsLinkedin, BsWhatsapp } from "react-icons/bs";
 import { experiencias } from "@/data/experiencias";
 import { skils } from "@/data/skils";
 
-
 const cv = "/Flavio_Gabriel_Curriculo.pdf";
 
 export const SobrePageTemplate = () => {
