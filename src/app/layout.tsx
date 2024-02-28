@@ -4,11 +4,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import { Inter } from "next/font/google";
 import { Metadata } from "next";
-import Script from "next/script";
 import { Suspense } from "react";
 import GtmAnalytics from "./components/analytics";
 import { Analytics } from '@vercel/analytics/react';
-import { LazyMotion, domAnimation } from "framer-motion";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://flaviogabrielportfolio.com.br"),
@@ -74,6 +73,7 @@ export default function RootLayout({
 
 				{children}
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html >
 	);
