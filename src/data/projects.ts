@@ -5,7 +5,6 @@ import pizzaria from '../../public/projectsImgs/banner3.webp'
 import JfPromotora from '../../public/projectsImgs/JF_Promotora_Banner.png'
 import Evence from '../../public/projectsImgs/Evence_Banner.png'
 import Bromx from '../../public/projectsImgs/Bromx_Banner.png'
-import MaiVoipCorp from '../../public/projectsImgs/MaivoipCorp_Banner.png'
 import MaiVoip from '../../public/projectsImgs/Maivoip_Banner.png'
 import ProspectImoveis from '../../public/projectsImgs/Prospecta_Imoveis_Banner.png'
 
@@ -27,7 +26,7 @@ export const Projects: IProject[] = [
   {
     title: "Site institucional - Mais Voip",
     description: "Projeto construído para a empresa MaisVoip, com o foco em captar clientes interessados em modernizar a telefonia de suas empresas, o site foca é ensinar sobre a Evence Telecom mostrando seus serviços e como ela ajuda a sua empresa crescer cada vez mais. Projeto construído com o Next.js, tailwindcss, typescript e Node.js.",
-    link: "https://maisvoip.com.br/",
+    link: "https://maisvoip.vercel.app/",
     mainImage: MaiVoip,
     tags: ["Next.js", "Tailwind css", "Typescript", "Node.js"],
     year: "2023",
@@ -37,14 +36,6 @@ export const Projects: IProject[] = [
         link: "https://www.linkedin.com/company/maisvoip/"
       }
     ]
-  },
-  {
-    title: "Landing page - MaisVoip Corp",
-    description: "Projeto construído para a empresa MaisVoip Corp, com o foco em captar clientes interessados em modernizar a telefonia de suas empresas, projeto construído com o Next.js, tailwindcss, typescript e Node.js.",
-    link: "https://www.maisvoipcorp.com.br/",
-    mainImage: MaiVoipCorp,
-    tags: ["Next.js", "Tailwind css", "Typescript", "Node.js"],
-    year: "2023",
   },
   {
     title: "Landing page - Bromx",
