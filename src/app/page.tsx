@@ -72,7 +72,15 @@ export default function Home() {
 	return (
 		<div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
 		>
-			
+			<div className="absolute h-[200vh] inset-0 -z-10 animate-fade-in ">
+				{!isMobile ? (
+					<>
+						<Particles quantity={80} className="w-screen h-screen" />
+					</>
+				) : (
+					<Particles3d />
+				)}
+			</div>
 			<Navigation home />
 			<section className="flex md:px-4 justify-center items-center h-screen  max-w-7xl relative w-full flex-col z-10">
 				<h1 className="z-10 font-bold text-xl text-transparent text-edge-outline animate-fade-in cursor-default font-display md:text-3xl 2xl:text-4xl 2xl:whitespace-nowrap text-center text-ellipsis bg-clip-text">
@@ -111,8 +119,10 @@ export default function Home() {
 					</Link>
 				</div>
 			</section>
-
 			
+			<DynamicPlanet />
+			<div className="w-full hidden xl:block h-[70vh] ">
+			</div>
 
 			<section id="sobre" aria-label="sobre" className="flex items-center justify-center w-full ">
 				<div className="flex justify-between items-center flex-col-reverse lg:flex-row gap-x-10 py-20 w-full max-w-7xl md:px-4">
