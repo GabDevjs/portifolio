@@ -1,7 +1,5 @@
 "use client";
-import Particles from "../components/particles";
 import { useEffect, useState } from "react";
-import { Particles3d } from "../components/particles3d";
 import { Navigation } from "../components/nav";
 import { Footer } from "../components/footer";
 import { Projects } from "@/data/projects";
@@ -137,7 +135,7 @@ export const ProjetosPageTemplate = () => {
                     'flex-auto lg:col-span-7 lg:row-start-1 xl:col-span-8'
                   )}
                 >
-                  <Link href={feature.mainImage}>
+                  <Link href={feature.link} target="_blank">
                     <div
                       className={classNames(
                         `aspect-h-1 aspect-w-5 rounded-lg bg-gray-100 relative `,

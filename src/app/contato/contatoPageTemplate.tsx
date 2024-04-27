@@ -67,15 +67,6 @@ export const ContatoPageTemplate = () => {
   return (
     <div className="flex flex-col relative top-0 inset-x-0 gap-x-15 items-center justify-center w-full overflow-x-hidden px-2"
     >
-      <div className="absolute h-screen inset-0 -z-10 animate-fade-in ">
-        {!isMobile ? (
-          <>
-            <Particles quantity={80} className="w-screen h-screen" />
-          </>
-        ) : (
-          <Particles3d />
-        )}
-      </div>
       <Navigation />
 
 

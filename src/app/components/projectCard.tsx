@@ -20,7 +20,7 @@ export const ProjectCard = (props: IProjectCardProps) => {
         <Link
           href={item.link}
           target="_blank"
-          className="w-full rounded-lg overflow-hidden relative h-[50vh]">
+          className="w-full rounded-lg overflow-hidden relative h-[50vh] xl:h-[35vh]">
           {item.mainImage ? (
             <Image
               src={item.mainImage}
